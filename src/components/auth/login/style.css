@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.box {
+    font-family: Arial, Helvetica, sans-serif;
+    background-size: cover;
+    background: linear-gradient(135deg, orange 60%, cyan);
+    background-attachment: fixed;
+}
+
+#judul {
+    line-height: 40px;
+    text-align: center;
+    margin-left: -30px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center !important;
+    height: 100vh;
+}
+
+.form {
+    width: 350px;
+    height: 450px;
+    background-color: rgba(41, 39, 39, 2.3);
+    box-shadow: 0 5px 30px black;
+    border-radius: 35px;
+}
+
+.btn a {
+    padding: 3px;
+    margin: 30px 0px 40px 30px;
+    border-style: none;
+    background-color: transparent;
+    color: beige;
+    font-size: 18px;
+    font-weight: 550;
+}
+
+.formGroup {
+    display: flex;
+    justify-content: center;
+    height: -100px;
+}
+
+.formGroup input {
+    border: none;
+    width: 75%;
+    border-bottom: 2px solid white;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+}
+
+input:focus {
+    outline: none !important;
+    border-bottom: 2px solid rgb(91, 243, 131);
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+}
+
+::placeholder {
+    color: white;
+}
+
+.checkbox {
+    display: flex;
+    justify-content: center;
+    margin: 16px !important;
+}
+
+#checkbox {
+    margin-right: 10px;
+    height: 15px;
+    width: 15px;
+}
+
+.text {
+    color: white;
+    font-size: 13px;
+}
+
+.btn2 {
+    padding: 10px;
+    width: 150px;
+    border-radius: 20px;
+    background-color: rgb(10, 136, 43);
+    border-style: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn2:hover {
+    background-color: rgba(10, 136, 43, 0.5);
+}
+
+.btn button:hover {
+    border-bottom: 2px solid rgb(91, 243, 131);
+}
+
+.login {
+    display: none;
+}
+
+.login {
+    margin-top: 40px;
+}
+
+.login .checkbox {
+    margin-top: 30px !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.kt1 {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding:20px 20px 35px 20px;
+}
+.errorMsg{
+    font-size: 12px;
+    display: flex;
+    max-width: 330px;
+    color: red;
+    padding-left: 54px;
+    text-align: left;
+}
+.loader-log_in {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: block;
+    margin:2px auto;
+    position: relative;
+    color: #FFF;
+    box-sizing: border-box;
+    animation: animloader 2s linear infinite;
+}
+@keyframes animloader {
+    0% {
+        box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+    }
+    25% {
+        box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 2px;
+    }
+    50% {
+        box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 2px,  -38px 0 0 -2px;
+    }
+    75% {
+        box-shadow: 14px 0 0 2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+    }
+    100% {
+        box-shadow: 14px 0 0 -2px,  38px 0 0 2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+    }
+}
+
+
+
