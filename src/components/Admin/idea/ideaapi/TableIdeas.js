@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import ReactPaginate from "react-paginate";
 
 const TableIdeas = (props) => {
-    const {fetchIdeas, getAllIdea,setPage,page} = props
+    const {fetchUpdateIdeas,fetchIdeas, getAllIdea,setPage,page} = props
     const handlePageChange = (event) => {
         fetchIdeas(+event.selected + 1)
         setPage(+event.selected + 1)
@@ -20,13 +20,13 @@ const TableIdeas = (props) => {
                         <th scope="col">Categories</th>
                         <th scope="col">like</th>
                         <th scope="col">Active</th>
-                        <th scope="col">closeCommentAt</th>
+                        <th scope="col">Create Ideas</th>
                         <th scope="col">closeIdieaAt</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
                     </thead>
-                    {getAllIdea && getAllIdea.length > 0 && getAllIdea.map((item) => {
+                    {getAllIdea?.length > 0 && getAllIdea.map((item) => {
                         return (
                             <tbody key={item.id} className={"text-xs"}>
                                 <ListIdeas
@@ -40,8 +40,10 @@ const TableIdeas = (props) => {
                                     likes={item.likes}
                                     active={item.active}
                                     createdAt={item.createdAt}
+                                    anonymous={item.anonymous}
                                     fetchIdeas={fetchIdeas}
                                     handlePageClick={handlePageChange}
+                                    fetchUpdateIdeas={fetchUpdateIdeas}
                                     page={page}
                                 />
                             </tbody>
@@ -72,7 +74,7 @@ const TableIdeas = (props) => {
                     breakLabel="..."
                     breakClassName="page-item"
                     breakLinkClassName="page-link"
-                    pageCount={5}
+                    pageCount={8}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={handlePageChange}

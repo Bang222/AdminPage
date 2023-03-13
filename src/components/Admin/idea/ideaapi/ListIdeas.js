@@ -4,9 +4,8 @@ import {useEffect, useState} from "react";
 import ModalEditIdeas from "./ModalEditIdeas";
 
 export const ListIdeas = (props) => {
-    const [totalLike,setTotalLike] = useState(0)
-    const [showEditUser,setShowEditUser] = useState(false);
     const {
+        anonymous,
         active,
         comments,
         page,
@@ -19,8 +18,13 @@ export const ListIdeas = (props) => {
         userIdeas,
         handlePageClick,
         fetchIdeas,
-        createdAt
+        createdAt,
+        fetchUpdateIdeas
     } = props
+    const [totalLike,setTotalLike] = useState(0)
+    const [showEditUser,setShowEditUser] = useState(false);
+    const dateCreateIdeas =dateFormat(createdAt,"dddd, mmmm dS, yyyy")
+    const dateCloseIdieaAt =dateFormat(closeIdieaAt,"dddd, mmmm dS, yyyy")
 // console.log("check show",showEditUser)
     return (
         <>
@@ -43,8 +47,8 @@ export const ListIdeas = (props) => {
                         <tr>
                             {categories?.map((item, index) => {
                                 return (
-                                    <td key={`table index ${index}`}>
-                                        {item.categoryName}
+                                    <td key={item.id}>
+                                        {item.categoryName},
                                     </td>
                                 )
                             })}
@@ -54,8 +58,8 @@ export const ListIdeas = (props) => {
                 </td>
                 <td>{totalLike}</td>
                 <td>{String(active)}</td>
-                <td>{createdAt}</td>
-                <td>{closeIdieaAt}</td>
+                <td>{dateCreateIdeas}</td>
+                <td>{dateCloseIdieaAt}</td>
                 <td>
                     <button type="button" style={{color: "blue", fontWeight: "900"}}
                         onClick={() => setShowEditUser(true)}
@@ -70,12 +74,16 @@ export const ListIdeas = (props) => {
             </tr>
             <ModalEditIdeas
                 key={id}
+                IdeaId = {id}
                 setShow={setShowEditUser}
                 show = {showEditUser}
+                userIdeas={userIdeas}
+                categories={categories}
                 closeIdieaAt={closeIdieaAt}
                 closeCommentAt={closeCommentAt}
-                createdAt={createdAt}
                 content={content}
+                anonymous={anonymous}
+                fetchUpdateIdeas={fetchUpdateIdeas}
             />
         </>
     )

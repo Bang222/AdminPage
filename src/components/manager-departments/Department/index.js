@@ -5,9 +5,8 @@ import {createAxios} from "../../../createInstance";
 import {loginSuccess} from "../../../redux/authSlice";
 import {useEffect, useState} from "react";
 import "./loaderManager.css"
-import {Navigate, useOutletContext} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import {getAllDepartmentsSuccess} from "../../../redux/departmentSlice";
 
 const ManagerCategories = () => {
     const auth = useSelector((state) => state.auth.login?.currentUser);
@@ -17,31 +16,30 @@ const ManagerCategories = () => {
     const role = check?.roles.includes("Quality Assurance Manager")
 
     const dispatch = useDispatch()
-    let axiosJWT = createAxios(auth,dispatch,loginSuccess)
+    let axiosJWT = createAxios(auth, dispatch, loginSuccess)
 
-    const fetchListCategories = async () => getAllCategories(dispatch,axiosJWT,auth.accessToken)
-    const fetchAddCategory = async (data) => addCategory(dispatch,axiosJWT,auth.accessToken,data)
-    const fetchDeleteCategory = async (id) => deleteCategory(dispatch,axiosJWT,auth.accessToken,id)
-    const fetchUpdateCategory = async (data) => updateCategory(dispatch,axiosJWT,auth.accessToken,data)
+    const fetchListCategories = () => getAllCategories(dispatch, axiosJWT, auth.accessToken)
+    const fetchAddCategory = (data) => addCategory(dispatch, axiosJWT, auth.accessToken, data)
+    const fetchDeleteCategory = (id) => deleteCategory(dispatch, axiosJWT, auth.accessToken, id)
+    const fetchUpdateCategory = (data) => updateCategory(dispatch, axiosJWT, auth.accessToken, data)
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchListCategories()
-    },[])
-    return !role? <Navigate to={"/admin"}/> : <>{loading ?
+    }, [])
+
+    return !role ? <Navigate to={"/admin"}/> : <>{ !listAllCategories ?
         <div className="flex justify-center pt-4"><span className="loader-manager"></span></div> :
         (
-        <>
-            <Categories
-                listAllCategories={listAllCategories}
-                fetchListCategories={fetchListCategories}
-                fetchAddCategory={fetchAddCategory}
-                fetchDeleteCategory={fetchDeleteCategory}
-                fetchUpdateCategory={fetchUpdateCategory}
-                loading={loading}
-                axiosJWT={axiosJWT}
-            />
-        </>
+            <>
+                <Categories
+                    listAllCategories={listAllCategories}
+                    fetchListCategories={fetchListCategories}
+                    fetchAddCategory={fetchAddCategory}
+                    fetchDeleteCategory={fetchDeleteCategory}
+                    fetchUpdateCategory={fetchUpdateCategory}
+                />
+            </>
         )
-        }</>
+    }</>
 }
 export default ManagerCategories

@@ -14,7 +14,7 @@ const EditModalCategory = (props) => {
 
     const handleCloseEdit = () => setShowUpdate(false)
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         if (_.isEmpty(UpdateCategory) && _.isEmpty(UpdateDescription)) return toast.error("You need input infomation")
         if (_.isEmpty(UpdateCategory)) return toast.error("Can not empty category name")
@@ -24,8 +24,8 @@ const EditModalCategory = (props) => {
             categoryName: UpdateCategory,
             description: UpdateDescription
         }
-        await fetchUpdateCategory(updateCategory)
-        await fetchListCategories()
+         fetchUpdateCategory(updateCategory)
+         fetchListCategories()
         if(!loading) {handleCloseEdit(toast.success("Update Success"))}
     }
     return (

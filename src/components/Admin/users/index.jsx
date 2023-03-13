@@ -9,7 +9,7 @@ import jwt_decode from "jwt-decode";
 
 const ManagerUsers = () => {
     const user = useSelector((state) => state.auth.login?.currentUser)
-    let getAllUser = useSelector((state) => state.listUsers.users?.allUsers)
+    const getAllUser = useSelector((state) => state.listUsers.users?.allUsers)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()

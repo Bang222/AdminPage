@@ -17,7 +17,7 @@ import {
     getCommentSuccess,
     getIdeasError,
     getIdeasSuccess,
-    getIdeaStart
+    getIdeaStart, updateIdeaFailure, updateIdeaSuccess
 } from "./ideasSlice";
 import {
     addCategoryFailure,
@@ -76,9 +76,24 @@ export const getAllIdeas = async (accessToken, dispatch, axiosJWT, page) => {
             headers: {Authorization: `Bearer ${accessToken}`}
         })
         dispatch(getIdeasSuccess(res.data))
-        // console.log(res.data)
     } catch (err) {
         getIdeasError()
+    }
+}
+export const updateIdeas = async (dispatch, axiosJWT, accessToken, data, files) => {
+    dispatch(updateIdeaSuccess())
+    try {
+        const res = await axiosJWT.post('http://localhost:3001/idieas/update',
+            {
+                data,
+                files
+            }, {
+                headers: {Authorization: `Bearer ${accessToken}`}
+            })
+        dispatch(updateIdeaSuccess(res.data))
+        // console.log("check",res.data)
+    } catch (err) {
+        dispatch(updateIdeaFailure(err))
     }
 }
 export const editUser = async (accessToken, dispatch, roles, userId, axiosJWT, navigate) => {
@@ -164,7 +179,7 @@ export const addCategory = async (dispatch, axiosJWT, accessToken, data) => {
 export const deleteCategory = async (dispatch, axiosJWT, accessToken, id) => {
     dispatch(deleteCategoryStart())
     try {
-        const res = await axiosJWT.post('http://localhost:3001/category/delete',id, {
+        const res = await axiosJWT.post('http://localhost:3001/category/delete', id, {
             headers: {Authorization: `Bearer ${accessToken}`}
         })
         dispatch(deleteCategorySuccess(res.data))
@@ -176,7 +191,7 @@ export const deleteCategory = async (dispatch, axiosJWT, accessToken, id) => {
 export const updateCategory = async (dispatch, axiosJWT, accessToken, data) => {
     dispatch(updateCategoryStart())
     try {
-        const res = await axiosJWT.post('http://localhost:3001/category/update',data, {
+        const res = await axiosJWT.post('http://localhost:3001/category/update', data, {
             headers: {Authorization: `Bearer ${accessToken}`}
         })
         dispatch(updateCategorySuccess(res.data))

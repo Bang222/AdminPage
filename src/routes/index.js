@@ -2,7 +2,6 @@ import ManagerUsers from "../components/Admin/users";
 import Login from "../components/auth/login/Login";
 import {ProSidebarProvider} from "react-pro-sidebar";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Ideas from "../components/Admin/idea";
 import ManagerUserCategories from "../components/manager-departments/users";
 import ManagerCategories from "../components/manager-departments/Department";
 import Index from "../components/auth/checkUserLogin";
@@ -11,6 +10,7 @@ import IndexAdmin from "../components/Admin";
 import IndexManager from "../components/manager-departments";
 import HomepageAdmin from "../components/Admin/HomeAdmin/HomepageAdmin";
 import HomepageManager from "../components/manager-departments/home/HomepageManager";
+import Ideas from "../components/Admin/idea";
 
 
 const RoutesApp = () => {

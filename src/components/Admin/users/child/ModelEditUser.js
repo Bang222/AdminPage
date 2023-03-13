@@ -19,6 +19,7 @@ export const ModelEditUser = (props) => {
     const handleClose = () => setShow(false);
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
         if(!role) return toast.error("Please choose a role")
         const roles = [role]
         await editUser(user?.accessToken, dispatch, roles,userId,axiosJWT)
@@ -30,7 +31,6 @@ export const ModelEditUser = (props) => {
             show={show}
             size="xl"
             backdrop='static'
-            className='modal-create-user'
         >
             <Modal.Header>
                 <Modal.Title> Edit </Modal.Title>

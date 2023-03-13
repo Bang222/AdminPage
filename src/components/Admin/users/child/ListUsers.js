@@ -7,10 +7,10 @@ const ListUsers = (props) => {
         firstName, lastName, address, active, roles,fetchUser,fetchBanUser,Idiea} = props
     const [ShowEditUser, setShowEditUser] = useState(false)
 
-    const handleActive = async (e) => {
+    const handleActive =  (e) => {
         e.preventDefault()
-        await fetchBanUser(id)
-        await fetchUser()
+         fetchBanUser(id)
+         fetchUser()
         toast.warn("Ban User Success!")
     }
     return (

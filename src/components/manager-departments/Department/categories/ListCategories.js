@@ -9,17 +9,17 @@ const ListCategories = (props) => {
     const loading = useSelector((state) => state.departments.deleteCategory?.isFetching)
     const error = useSelector((state) => state.departments.deleteCategory?.error)
     const [modalEditCategory,setModalEditCategory] = useState(false)
-    const handleDelete = async (categoryId) => {
+    const handleDelete = (categoryId) => {
         if (!error) {
             const checkId = {
                 id: categoryId,
             }
-            await fetchDeleteCategory(checkId)
-            await fetchListCategories()
+             fetchDeleteCategory(checkId)
+             fetchListCategories()
             toast.success("Delete successfully")
         } else toast.error("You can not Delete")
     }
-    // console.log(modalEditCategory);
+   // console.log("list");
     return loading ? <span className="loader"></span> : (
         <>
             <tr>
