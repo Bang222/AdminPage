@@ -23,13 +23,13 @@ const ModalEditIdeas = (props) => {
     const err = useSelector((state) => state.listIdeas.updateIdeas?.error)
     const pending = useSelector((state) => state.listIdeas.updateIdeas?.isFetching)
     // const [dataIdeas,setDataIdeas] = useState([]);
-    const [inputContent, setInputContent] = useState(`${content}`)
+    const [inputContent, setInputContent] = useState(String(content))
     const [inputCloseCommentAt, setInputCloseCommentAt] = useState("")
     const [inputCloseIdieaAt, setInputCloseIdieaAt] = useState("")
-    const [InputAnonymous, setInputAnonymous] = useState(anonymous)
+    const [InputAnonymous, setInputAnonymous] = useState('anonymous')
     const [category, setCategory] = useState(categories)
-    const [file, setFile] = useState([{}])
-    const [previewFile, setPreviewFile] = useState('')
+    const [file, setFile] = useState("")
+    const [previewFile, setPreviewFile] = useState([])
     // console.log("inputContent",inputContent)
     // console.log("inputCloseCommentAt",inputCloseCommentAt)
     // console.log("inputCloseIdieaAt",inputCloseIdieaAt)
@@ -57,17 +57,17 @@ const ModalEditIdeas = (props) => {
         if (_.isEmpty(inputContent)) {
             toast.warn("Content is empty")
         }
-        const data = {
-            idieaId: IdeaId,
-            content: inputContent,
-            // idCategory: category,
-            anonymous: InputAnonymous,
-            closeIdieaAt: closeIdieaAt,
-            closeCommentAt: closeCommentAt
-        }
-        fetchUpdateIdeas(data,file)
+        const data = new FormData()
+        data.append('idieaId',IdeaId)
+        data.append('content',setInputContent)
+        data.append('anonymous',InputAnonymous)
+        data.append('closeIdieaAt',closeIdieaAt)
+        data.append('closeCommentAt',closeCommentAt)
+        data.append('files',file)
+        // files:[file],
+        fetchUpdateIdeas(data)
     }
-    console.log("check file", file)
+    // console.log("check file", file)
     const handleUploadFile = (event) => {
         if (event.target && event.target.files && event.target.files[0]) {
             setPreviewFile(URL.createObjectURL(event.target.files[0]))
@@ -145,7 +145,7 @@ const ModalEditIdeas = (props) => {
                                 <Row className="pt-2 pb-2">
                                     <label className="form-label m-[8px]" htmlFor='labelUpload'
                                     > <i className="fas fa-file-upload"/> Upload file</label>
-                                    <input type='file' hidden id='labelUpload'
+                                    <input type='file' hidden id='labelUpload' multiple
                                            onChange={handleUploadFile}
                                     />
                                 </Row>

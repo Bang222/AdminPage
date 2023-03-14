@@ -20,7 +20,7 @@ const Ideas = () => {
     const checkRole = jwt_decode(user?.accessToken)
     const role = checkRole.roles?.includes("Adminstrator")
     const fetchIdeas = (page) => getAllIdeas(user?.accessToken, dispatch, axiosJWT, page)
-    const fetchUpdateIdeas = (data,file) => updateIdeas(dispatch, axiosJWT,user?.accessToken, data,file)
+    const fetchUpdateIdeas = (data,files) => updateIdeas(dispatch, axiosJWT,user?.accessToken,data)
     useEffect(() => {
             fetchIdeas(1)
     }, [])

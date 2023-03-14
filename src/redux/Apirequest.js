@@ -80,14 +80,11 @@ export const getAllIdeas = async (accessToken, dispatch, axiosJWT, page) => {
         getIdeasError()
     }
 }
-export const updateIdeas = async (dispatch, axiosJWT, accessToken, data, files) => {
+export const updateIdeas = async (dispatch, axiosJWT, accessToken, data) => {
     dispatch(updateIdeaSuccess())
     try {
-        const res = await axiosJWT.post('http://localhost:3001/idieas/update',
-            {
-                data,
-                files
-            }, {
+        const res = await axiosJWT.post('http://localhost:3001/idieas/update', data,
+           {
                 headers: {Authorization: `Bearer ${accessToken}`}
             })
         dispatch(updateIdeaSuccess(res.data))

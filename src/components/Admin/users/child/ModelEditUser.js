@@ -18,8 +18,7 @@ export const ModelEditUser = (props) => {
     const [role, setRoles] = useState("")
     const handleClose = () => setShow(false);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         if(!role) return toast.error("Please choose a role")
         const roles = [role]
         await editUser(user?.accessToken, dispatch, roles,userId,axiosJWT)
