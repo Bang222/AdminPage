@@ -10,8 +10,8 @@
 const ManagerUsersCategory = () => {
 
     return
-        (
-            <div> bang </div>
+    (
+        <div> bang </div>
     )
 }
 export default ManagerUsersCategory

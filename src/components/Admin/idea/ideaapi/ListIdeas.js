@@ -45,7 +45,7 @@ export const ListIdeas = (props) => {
                     <table>
                         <tbody>
                         <tr>
-                            {categories?.map((item, index) => {
+                            {categories?.map((item) => {
                                 return (
                                     <td key={item.id}>
                                         {item.categoryName},

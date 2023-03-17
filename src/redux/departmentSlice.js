@@ -31,7 +31,7 @@ export const DepartmentSlice = createSlice({
             state.department.error = false;
             state.department.success = false;
         },
-        getAllDepartmentsSuccess: (state, action) => {
+            getAllDepartmentsSuccess: (state, action) => {
             state.department.isFetching = false;
             state.department.error = false;
             state.department.allDepartments = action.payload;

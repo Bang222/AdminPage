@@ -4,7 +4,8 @@ const TableUsers = (props) => {
     const {fetchUser, getAllUsers, fetchBanUser} = props
 
     // console.log(getAllUsers)
-    return (<div className="table-user" style={{display: "flex"}}>
+    return (
+        <div className="table-user" style={{display: "flex"}}>
             <table id="customers">
                 <thead>
                 <tr>

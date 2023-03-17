@@ -84,7 +84,7 @@ const Layout = (props) => {
                                         </h2>
                                     </Link>
                                 ))}
-                                <section className ="flex pl-3 ">
+                                <section className ="flex pl-3">
                                     <i className="fa fa-sign-out" style={{paddingTop:"3px",cursor: "pointer"}} aria-hidden="true"
                                        onClick={handleLogout}
                                     ></i>
@@ -97,8 +97,8 @@ const Layout = (props) => {
                                         }`}
                                         onClick={handleLogout}
                                     >
-                                        <a
-                                            href={"/login"}> Log Out</a>
+                                        <Link
+                                            to={"/login"}> Log Out</Link>
                                     </h2>
                                 </section>
                             </div>
@@ -150,7 +150,7 @@ const Layout = (props) => {
                                         </h2>
                                     </Link>
                                 ))}
-                                <section className ="flex pl-3 ">
+                                <div className ="flex pl-3 ">
                                     <i className="fa fa-sign-out" style={{paddingTop:"3px",cursor: "pointer"}} aria-hidden="true"
                                        onClick={handleLogout}
                                     ></i>
@@ -163,9 +163,9 @@ const Layout = (props) => {
                                         }`}
                                         onClick={handleLogout}
                                     >
-                                        <a href={"/login"}> Log Out</a>
+                                        <Link to={"/login"}> Log Out</Link>
                                     </h2>
-                                </section>
+                                </div>
                             </div>
                         </div>
                         {/*<div className="m-3 text-xl text-gray-900 font-semibold">*/}

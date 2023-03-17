@@ -1,6 +1,7 @@
 import ListIdeas from "./ListIdeas";
 import React, {useState} from "react";
 import ReactPaginate from "react-paginate";
+import {Col, Row} from "react-bootstrap";
 
 const TableIdeas = (props) => {
     const {fetchUpdateIdeas,fetchIdeas, getAllIdea,setPage,page} = props
@@ -10,25 +11,27 @@ const TableIdeas = (props) => {
     };
     return (
         <>
-                <table className="table table-striped text-sm" style={{border: "solid 1px #ccc"}}>
-                    <thead className="text-white bg-slate-900">
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Content</th>
-                        <th scope="col">Comments</th>
-                        <th scope="col">Categories</th>
-                        <th scope="col">like</th>
-                        <th scope="col">Active</th>
-                        <th scope="col">Create Ideas</th>
-                        <th scope="col">closeIdieaAt</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                    </thead>
-                    {getAllIdea?.length > 0 && getAllIdea.map((item) => {
-                        return (
-                            <tbody key={item.id} className={"text-xs"}>
+            <Row className={" h-5/6 overflow-scroll"}>
+                <Col>
+                    <table className="table table-striped text-sm flex items-center" style={{border: "solid 1px #ccc"}}>
+                        <thead className="text-white bg-slate-900">
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Content</th>
+                            <th scope="col">Comments</th>
+                            <th scope="col">Categories</th>
+                            <th scope="col">like</th>
+                            <th scope="col">Active</th>
+                            <th scope="col">CreateIdeas</th>
+                            <th scope="col">closeIdieaAt</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                        </thead>
+                        {getAllIdea?.length > 0 && getAllIdea.map((item) => {
+                            return (
+                                <tbody key={item.id} className={"text-xs"}>
                                 <ListIdeas
                                     id={item.id}
                                     userIdeas={item.user}
@@ -46,21 +49,24 @@ const TableIdeas = (props) => {
                                     fetchUpdateIdeas={fetchUpdateIdeas}
                                     page={page}
                                 />
+                                </tbody>
+                            )
+                        })
+                        }
+                        {
+                            getAllIdea && getAllIdea.length === 0 &&
+                            <tbody>
+                            <tr>
+                                <td style={{color: 'Red', textAlign: "center", fontWeight: "900", fontSize: "24"}}
+                                    colSpan={'10'}>Data Empty
+                                </td>
+                            </tr>
                             </tbody>
-                        )
-                    })
-                    }
-                    {
-                        getAllIdea && getAllIdea.length === 0 &&
-                        <tbody>
-                        <tr>
-                            <td style={{color: 'Red', textAlign: "center", fontWeight: "900", fontSize: "24"}}
-                                colSpan={'10'}>Data Empty
-                            </td>
-                        </tr>
-                        </tbody>
-                    }
-                </table>
+                        }
+                    </table>
+                </Col>
+            </Row>
+
             <div className="paginate flex justify-center p-1" >
                 <ReactPaginate
                     previousLabel="Previous"

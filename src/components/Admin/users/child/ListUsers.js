@@ -3,14 +3,16 @@ import ModelEditUser from "./ModelEditUser";
 import {toast} from "react-toastify";
 
 const ListUsers = (props) => {
-    const {username, email, phone, id, departmentId,
-        firstName, lastName, address, active, roles,fetchUser,fetchBanUser,Idiea} = props
+    const {
+        username, email, phone, id, departmentId,
+        firstName, lastName, address, active, roles, fetchUser, fetchBanUser, Idiea
+    } = props
     const [ShowEditUser, setShowEditUser] = useState(false)
 
-    const handleActive =  (e) => {
+    const handleActive = async (e) => {
         e.preventDefault()
-         fetchBanUser(id)
-         fetchUser()
+        await fetchBanUser(id)
+        await fetchUser()
         toast.warn("Ban User Success!")
     }
     return (
@@ -29,15 +31,15 @@ const ListUsers = (props) => {
                     <td>{roles}</td>
                     <td>{Idiea.length}</td>
                     <td>
-                        <button type="button" style={{color:"blue",fontWeight:"900"}}
+                        <button type="button" style={{color: "blue", fontWeight: "900"}}
                                 onClick={() => setShowEditUser(true)}
                         >Edit
                         </button>
                     </td>
                     <td>
-                        <button style={{color:"red",fontWeight:"900"}}
+                        <button style={{color: "red", fontWeight: "900"}}
                                 onClick={(e) => handleActive(e)}
-                        >{active? "Ban" :"Active"}
+                        >{active ? "Ban" : "Active"}
                         </button>
                     </td>
                 </tr> : <></>}

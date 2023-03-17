@@ -18,8 +18,8 @@ const ManagerCategories = () => {
     const dispatch = useDispatch()
     let axiosJWT = createAxios(auth, dispatch, loginSuccess)
 
-    const fetchListCategories = () => getAllCategories(dispatch, axiosJWT, auth.accessToken)
-    const fetchAddCategory = (data) => addCategory(dispatch, axiosJWT, auth.accessToken, data)
+    const fetchListCategories =  () =>  getAllCategories(dispatch, axiosJWT, auth.accessToken)
+    const fetchAddCategory =  (data) =>  addCategory(dispatch, axiosJWT, auth.accessToken, data)
     const fetchDeleteCategory = (id) => deleteCategory(dispatch, axiosJWT, auth.accessToken, id)
     const fetchUpdateCategory = (data) => updateCategory(dispatch, axiosJWT, auth.accessToken, data)
 
@@ -31,6 +31,7 @@ const ManagerCategories = () => {
         <div className="flex justify-center pt-4"><span className="loader-manager"></span></div> :
         (
             <>
+            <div className="flex justify-center pt-[12px]">
                 <Categories
                     listAllCategories={listAllCategories}
                     fetchListCategories={fetchListCategories}
@@ -38,6 +39,7 @@ const ManagerCategories = () => {
                     fetchDeleteCategory={fetchDeleteCategory}
                     fetchUpdateCategory={fetchUpdateCategory}
                 />
+            </div>
             </>
         )
     }</>

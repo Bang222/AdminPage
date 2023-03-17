@@ -14,7 +14,7 @@ const AddModalCategory = (props) => {
     const [description, setDescription] = useState("")
     const handleClose = () => setShow(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if (_.isEmpty(description) && _.isEmpty(categoryName)) return toast.error("You need input infomation")
         if (_.isEmpty(categoryName)) return toast.error("Can not empty category name")
@@ -23,7 +23,7 @@ const AddModalCategory = (props) => {
             categoryName: categoryName,
             description: description
         }
-         fetchAddCategory(newCategory)
+        await fetchAddCategory(newCategory)
         handleClose(toast.success("Add Success"))
          fetchListCategories()
     }

@@ -23,13 +23,14 @@ const ModalEditIdeas = (props) => {
     const err = useSelector((state) => state.listIdeas.updateIdeas?.error)
     const pending = useSelector((state) => state.listIdeas.updateIdeas?.isFetching)
     // const [dataIdeas,setDataIdeas] = useState([]);
-    const [inputContent, setInputContent] = useState(String(content))
+    const [inputContent, setInputContent] = useState(content)
     const [inputCloseCommentAt, setInputCloseCommentAt] = useState("")
     const [inputCloseIdieaAt, setInputCloseIdieaAt] = useState("")
-    const [InputAnonymous, setInputAnonymous] = useState('anonymous')
+    const [InputAnonymous, setInputAnonymous] = useState(String(anonymous))
     const [category, setCategory] = useState(categories)
     const [file, setFile] = useState("")
-    const [previewFile, setPreviewFile] = useState([])
+    const [uploadFile, setUploadFile] = useState()
+    const [previewFile, setPreviewFile] = useState("")
     // console.log("inputContent",inputContent)
     // console.log("inputCloseCommentAt",inputCloseCommentAt)
     // console.log("inputCloseIdieaAt",inputCloseIdieaAt)
@@ -59,12 +60,11 @@ const ModalEditIdeas = (props) => {
         }
         const data = new FormData()
         data.append('idieaId',IdeaId)
-        data.append('content',setInputContent)
+        data.append('content',inputContent)
         data.append('anonymous',InputAnonymous)
         data.append('closeIdieaAt',closeIdieaAt)
         data.append('closeCommentAt',closeCommentAt)
         data.append('files',file)
-        // files:[file],
         fetchUpdateIdeas(data)
     }
     // console.log("check file", file)
@@ -153,6 +153,7 @@ const ModalEditIdeas = (props) => {
                                     <Col className={"p-2"}>
                                         {previewFile ?
                                             <Row>
+                                                <img className={"h-[300px] w-[300px]"} src={previewFile} alt={"okee"} />
                                                 <p className={"p-2"}><strong>File Name</strong>: {file.name}</p>
                                                 <p className={"p-2"}><strong>File Type</strong>: {file.type}</p>
                                                 <p className={"p-2"}><strong>File Size </strong>: {file.size} byte</p>

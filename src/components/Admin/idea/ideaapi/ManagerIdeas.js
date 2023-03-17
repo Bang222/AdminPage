@@ -6,8 +6,7 @@ import {CSVLink} from "react-csv";
 import {useSelector} from "react-redux";
 
 const ManagerIdeas = (props) => {
-    const {fetchUpdateIdeas, getAllIdea, page, setPage, fetchIdeas, loading} = props
-    const [dataUser, setDataIdeas] = useState()
+    const {fetchUpdateIdeas, getAllIdea, page, setPage, fetchIdeas} = props
     const headers = [
         {label: "ID", key: "id"},
         {label: "Author", key: "user"},
@@ -30,25 +29,23 @@ const ManagerIdeas = (props) => {
     //     // console.log("bang")
     // }, [page])
     // console.log("out side useEffect Get all Ideas",getAllIdea)
-    const getAllIdeas = useSelector((state) => state.listIdeas.ideas?.allIdeas)
     const csvLinkIdeas = {
         filename: "Ideas.csv",
         headers: headers,
-        data: getAllIdeas
+        data: getAllIdea
     }
     // console.log("check data 2",page)
     return (
         <>
             <title>MANAGER IDEAS</title>
             <Container className={"pb-2"} style={{height: "80vh"}}>
-                <Row style={{maxWidth: "99%"}}>
+                <Row className={"ml-[12px] pt-[30px]"} style={{maxWidth: "99%"}}>
                     <Row className="pb-2">
                         <Col>
                             <CSVLink
                                 {...csvLinkIdeas}
                                 type="button"
-                                className="inline-block rounded-full border-2 border-info px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-info transition duration-150 ease-in-out hover:border-info-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-info-600 focus:border-info-600 focus:text-info-600 focus:outline-none focus:ring-0 active:border-info-700 active:text-info-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                            >
+                                className="font-bold cursor-pointer bg-blue-200 inline-block rounded-full border-2 border-info px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-info transition duration-150 ease-in-out hover:border-info-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-info-600 focus:border-info-600 focus:text-info-600 focus:outline-none focus:ring-0 active:border-info-700 active:text-info-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
                                 download CSV
                             </CSVLink>
                         </Col>
@@ -58,14 +55,22 @@ const ManagerIdeas = (props) => {
                             </h2>
                         </Col>
                     </Row>
-                    <TableIdeas
-                        getAllIdea={getAllIdea}
-                        fetchIdeas={fetchIdeas}
-                        setPage={setPage}
-                        page={page}
-                        fetchUpdateIdeas={fetchUpdateIdeas}
-                        setDataIdeas={setDataIdeas}
-                    />
+                    <Row className={"flex justify-center"}>
+                        <Col className="h-[1px] bg-gradient-to-r from-cyan-500 to-blue-500 mb-[30px] mt-[12px]" style={{maxWidth:"75%"}}>
+                            <span></span>
+                        </Col>
+                    </Row>
+                    <Row className="h-[80vh]">
+                        <Col className="h-full">
+                            <TableIdeas
+                                getAllIdea={getAllIdea}
+                                fetchIdeas={fetchIdeas}
+                                setPage={setPage}
+                                page={page}
+                                fetchUpdateIdeas={fetchUpdateIdeas}
+                            />
+                        </Col>
+                    </Row>
                 </Row>
             </Container>
         </>
