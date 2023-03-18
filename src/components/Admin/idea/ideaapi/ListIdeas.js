@@ -3,6 +3,24 @@ import ManagerComments from "./comment/ManagerComments";
 import {useEffect, useState} from "react";
 import ModalEditIdeas from "./ModalEditIdeas";
 
+export const checkLike = (likes) => {
+    let like=0
+    let dislike = 0
+    let totalLike = 0
+    try {
+        likes.forEach((x) => {
+            if (x.positive === true) {
+                like++
+            } else {
+                dislike++
+            }
+                totalLike = like - dislike
+        })
+        return totalLike
+    } catch (e){
+        console.log(e)
+    }
+}
 export const ListIdeas = (props) => {
     const {
         anonymous,
@@ -21,11 +39,15 @@ export const ListIdeas = (props) => {
         createdAt,
         fetchUpdateIdeas
     } = props
-    const [totalLike,setTotalLike] = useState(0)
+    const [totalLike,setTotalLike] = useState("")
     const [showEditUser,setShowEditUser] = useState(false);
     const dateCreateIdeas =dateFormat(createdAt,"dddd, mmmm dS, yyyy")
     const dateCloseIdieaAt =dateFormat(closeIdieaAt,"dddd, mmmm dS, yyyy")
-// console.log("check show",showEditUser)
+    useEffect(()=>{
+        checkLike(likes)
+        setTotalLike(checkLike(likes))
+        // console.log(totalLike)
+    },[likes])
     return (
         <>
             <tr>

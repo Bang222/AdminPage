@@ -39,34 +39,6 @@ const Login = () => {
             loginUser(login, dispatch, navigate);
         },
     });
-    // const validate = () => {
-    //     const errors = {};
-    //     if (username.length < 4) {
-    //         errors.username = ' User Name is to short';
-    //         console.log('check>>', username);
-    //     } else if (isEmpty(username)) {
-    //         errors.username = 'Please enter your name'
-    //     }
-    //     if (!isStrongPassword(password)) {
-    //         errors.password = 'Password must be 7-19 characters and contain at least one letter, one number and a special character'
-    //     } else if (isEmpty(password)) {
-    //         errors.password = 'Please enter your password'
-    //     }
-    //     setValidatorMsg(errors)
-    //     if (Object.keys(errors).length > 0) return false
-    //     return true;
-    // }
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const isValid = validate();
-    //     if (!isValid) return;
-    //     const login = {
-    //         username: username,
-    //         password: password
-    //     }
-    //     await loginUser(login, dispatch, navigate)
-    // }
-    // bang
     const handleShowHidePassword = () => {
         setShowHidePassword(!showHidePassword)
     }
@@ -150,35 +122,6 @@ const Login = () => {
                     </form>
                     {!err ? <></> :<p className={"errorMsg"}>Password or UserName Invalid</p>}
                 </div>
-
-                {/*<title>LOG IN</title>*/}
-                {/*<div className='box'>*/}
-                {/*    <section id='login' className='container' onSubmit={handleSubmit}>*/}
-                {/*        <form className='form'>*/}
-                {/*            <div className='ls'/>*/}
-                {/*            <div className='formGroup'>*/}
-                {/*                <span className='kt1'>ADMIN PAGE</span>*/}
-                {/*            </div>*/}
-                {/*            <div className='formGroup form-floating'>*/}
-                {/*                <input type='text' placeholder='User Name' name='username'*/}
-                {/*                       onChange={(e) => setusername(e.target.value)}/>*/}
-                {/*            </div>*/}
-                {/*            <p className="errorMsg">{validatorMsg.username}</p>*/}
-                {/*            <div className='formGroup relative'>*/}
-
-                {/*            </div>*/}
-                {/*            <p className="errorMsg">{validatorMsg.password}</p>*/}
-                {/*            <div className='formGroup' style={{paddingTop: "20px"}}>*/}
-                {/*                {pending ? <span className="loader-log_in"></span> :*/}
-                {/*                    <button type='submit' className='btn2'> Login </button>}*/}
-                {/*            </div>*/}
-                {/*            /!*{!err ? <></> :*!/*/}
-                {/*            /!*    <p className="errorMsg" style={{paddingTop: "20px", textAlign: "center"}}>Invalid UserName*!/*/}
-                {/*            /!*        or*!/*/}
-                {/*            /!*        Password </p>}*!/*/}
-                {/*        </form>*/}
-                {/*    </section>*/}
-                {/*</div>*/}
             </section>
 
         </>

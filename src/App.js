@@ -20,7 +20,7 @@ const App = () => {
                 theme="colored"
             />
         </>
-    );
+    )
 }
 
 export default App;

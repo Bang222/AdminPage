@@ -27,7 +27,7 @@ const ModalEditIdeas = (props) => {
     const [inputCloseCommentAt, setInputCloseCommentAt] = useState("")
     const [inputCloseIdieaAt, setInputCloseIdieaAt] = useState("")
     const [InputAnonymous, setInputAnonymous] = useState(String(anonymous))
-    const [category, setCategory] = useState(categories)
+    const [category, setCategory] = useState()
     const [file, setFile] = useState("")
     const [uploadFile, setUploadFile] = useState()
     const [previewFile, setPreviewFile] = useState("")
@@ -42,15 +42,14 @@ const ModalEditIdeas = (props) => {
     const dateCloseIdeas = dateFormat(inputCloseIdieaAt, "dddd, mmmm dS, yyyy")
     const fullName = `${userIdeas.firstName} ${userIdeas.lastName}`
 
-    // useEffect(()=>{
-    //     const checkCategory = () => {
-    //         categories.forEach((x)=>{
-    //             console.log('check',x.id)
-    //         })
-    //     }
-    //     checkCategory()
-    // },[])
-
+    useEffect(()=>{
+        const checkCategory = () => {
+            categories.forEach((x)=>{
+                setCategory(x.id)
+            })
+        }
+        checkCategory()
+    },[])
     const handleClose = () => {
         setShow(!show)
     }
@@ -104,7 +103,7 @@ const ModalEditIdeas = (props) => {
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridCity">
                             <Form.Label>Total Categories</Form.Label>
-                            <Form.Control type="text" value={categories.length}
+                            <Form.Control type="text" value={categories}
                                           disabled
                             />
                         </Form.Group>

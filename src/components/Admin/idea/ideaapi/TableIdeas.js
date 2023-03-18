@@ -66,7 +66,7 @@ const TableIdeas = (props) => {
                     </table>
                 </Col>
             </Row>
-
+            <div className={"flex justify-center"}><strong>Table:</strong>Manager Ideas</div>
             <div className="paginate flex justify-center p-1" >
                 <ReactPaginate
                     previousLabel="Previous"

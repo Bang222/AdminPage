@@ -1,8 +1,10 @@
 import {Col, Container, Row} from "react-bootstrap";
 import {useState} from "react";
+import LineChartsIdeas from "../chart/LineChartsIdeas";
+import {useSelector} from "react-redux";
 
 const HomepageAdmin = () => {
-
+    const getAllUser = useSelector((state) => state.listUsers.users?.allUsers)
     const [check, setCheck] = useState([
         {name: "User", total: "120", icon: "fa fa-user"},
         {name: "Ideas", total: "120", icon: "fa fa-lightbulb"},
@@ -45,13 +47,23 @@ const HomepageAdmin = () => {
                                             </Col>
                                             <Col className={"flex grid justify-start font-semibold"} md={"9"}>
                                                 <p className="p-2">{item.name}</p>
-                                                <p  className="p-2">Total: {item.total}</p>
+                                                <p className="p-2">Total: {item.total}</p>
                                             </Col>
                                         </Row>
                                     </Col>
                                 )
                             })}
                             </Row>
+                        </Col>
+                    </Row>
+                    <div className={"h-[36px]"}>
+
+                    </div>
+                    <Row>
+                        <Col className={"w-full h-[330px] flex justify-center"}>
+                            <LineChartsIdeas
+                                getAllUser={getAllUser}
+                            />
                         </Col>
                     </Row>
                 </Container>

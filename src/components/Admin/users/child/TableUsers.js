@@ -3,7 +3,7 @@ import ListUsers from "./ListUsers";
 const TableUsers = (props) => {
     const {fetchUser, getAllUsers, fetchBanUser} = props
 
-    // console.log(getAllUsers)
+    //console.log(getAllUsers)
     return (
         <div className="table-user" style={{display: "flex"}}>
             <table id="customers">

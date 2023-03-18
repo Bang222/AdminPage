@@ -17,24 +17,11 @@ const ManagerIdeas = (props) => {
         {label: "active", key: "active"},
         {label: "createdAt", key: "createdAt"},
     ]
-    // const callData = async (page) => {
-    //     try {
-    //         const res = await axiosJWT.get(`http://localhost:3001/idieas/all?order-field=id&orderby=asc&page=${page}`)
-    //         setDataIdeas(res.data)
-    //     }
-    //     catch (err) {console.error(err)}
-    // }
-    // useEffect(() => {
-    //     callData(page)
-    //     // console.log("bang")
-    // }, [page])
-    // console.log("out side useEffect Get all Ideas",getAllIdea)
     const csvLinkIdeas = {
         filename: "Ideas.csv",
         headers: headers,
         data: getAllIdea
     }
-    // console.log("check data 2",page)
     return (
         <>
             <title>MANAGER IDEAS</title>
