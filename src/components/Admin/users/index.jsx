@@ -7,7 +7,7 @@ import {Navigate, useNavigate} from "react-router-dom";
 import {createAxios} from "../../../createInstance";
 import {loginSuccess} from "../../../redux/authSlice"
 import jwt_decode from "jwt-decode";
-import LineChartsIdeas from "../chart/LineChartsIdeas";
+import BarChartsIdeas from "../chart/BarChartsIdeas";
 import "../loadingadmin.css"
 
 
@@ -43,7 +43,7 @@ const ManagerUsers = () => {
                     <div className={"h-[24px]"}></div>
                     <Row>
                         <Col className={"h-[250px] flex justify-center"}>
-                            <LineChartsIdeas
+                            <BarChartsIdeas
                                 getAllUser={getAllUser}
                             />
                         </Col>

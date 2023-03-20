@@ -1,73 +1,92 @@
 import {Col, Container, Row} from "react-bootstrap";
-import {useState} from "react";
-import LineChartsIdeas from "../chart/LineChartsIdeas";
-import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import Ideas from "../idea";
+import {getAllUsers} from "../../../redux/Apirequest";
+import {Navigate, useNavigate} from "react-router-dom";
+import {createAxios} from "../../../createInstance";
+import {loginSuccess} from "../../../redux/authSlice";
+import jwt_decode from "jwt-decode";
+import TotalUserNav from "./TotalUserNav";
+import ManagerChart from "./ManagerChart";
 
 const HomepageAdmin = () => {
+    const auth = useSelector((state) => state.auth.login?.currentUser)
     const getAllUser = useSelector((state) => state.listUsers.users?.allUsers)
-    const [check, setCheck] = useState([
-        {name: "User", total: "120", icon: "fa fa-user"},
-        {name: "Ideas", total: "120", icon: "fa fa-lightbulb"},
-        {name: "Comment", total: "120", icon: "fa fa-comment"},
-        {name: "Department", total: "120", icon: "fa fa-book"},
-        // {name: "Categories", total: "120", icon: "fa fa-book"},
-    ])
-    return (
+    const [animationChart, setAnimationChart] = useState(true)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    let axiosJWT = createAxios(auth, dispatch, loginSuccess)
+    const checkRole = jwt_decode(auth.accessToken)
+    const role = checkRole.roles.includes("Adminstrator")
+    const fetchUser = async () => await getAllUsers(auth?.accessToken, dispatch, axiosJWT)
+    useEffect(() => {
+        fetchUser()
+    }, [])
+    const handleToggleBar= () => {
+        setAnimationChart(!animationChart)
+    }
+    return !role ? <Navigate to="/home"/> : (
         <>
-            <section style={{transition: "width .9s ease-in"}}>
-                <Container>
-                    <Row className={"pt-[24px] m-[1px] pb-[30px]"}>
-                        <Row className={"flex justify-between font-bold"}>
-                            <Col className={"text-4xl"}><h2> Dash Board ADMIN</h2></Col>
-                            <Col className={"text-right font-bold"}>
+            {getAllUser ? <section style={{transition: "width .9s ease-in"}}>
+                    <Container>
+                        <Row className={"pt-[24px] m-[1px] pb-[30px]"}>
+                            <Row className={"flex justify-between font-bold"}>
+                                <Col className={"text-4xl"}><h2> Dash Board ADMIN</h2></Col>
+                                <Col className={"text-right font-bold"}>
                         <span
                             className="font-bold cursor-pointer bg-blue-200 inline-block rounded-full border-2 border-info px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-info transition duration-150 ease-in-out hover:border-info-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-info-600 focus:border-info-600 focus:text-info-600 focus:outline-none focus:ring-0 active:border-info-700 active:text-info-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
                          DownLoad Zip
                     </span>
+                                </Col>
+                            </Row>
+                        </Row>
+                        <Row className={"flex justify-center"}>
+                            <Col className="h-[1px] bg-gradient-to-r from-cyan-500 to-blue-500" style={{maxWidth: "75%"}}>
+                                <span></span>
                             </Col>
                         </Row>
-                    </Row>
-                    <Row className={"flex justify-center"}>
-                        <Col className="h-[1px] bg-gradient-to-r from-cyan-500 to-blue-500" style={{maxWidth:"75%"}}>
-                            <span></span>
-                        </Col>
-                    </Row>
-                    <Row className={"pt-5 mr-[30px] ml-[36px]"}>
-                        <Col >
-                            <Row className={"md:flex md:justify-center" } >
-                            {check && check.map((item, index) => {
-                                return (
-                                    <Col key = {index}
-                                         md={6}
-                                         sx={12}
-                                        className={"flex justify-between m-2 max-w-[1366px] mr-[24px] shadow-lg shadow-black-500/50 hover:bg-black hover:ease-in hover:duration-300 hover:text-white bg-gray-500 w-[234px]  max-w-[234px] h-[100px] border-solid border-2 border-white-500 rounded-md items-center cursor-pointer"}>
-                                        <Row >
-                                            <Col className={"flex items-center"} md={"3"} style={{fontSize:"24px"}}>
-                                                <i className={`${item.icon}`}/>
-                                            </Col>
-                                            <Col className={"flex grid justify-start font-semibold"} md={"9"}>
-                                                <p className="p-2">{item.name}</p>
-                                                <p className="p-2">Total: {item.total}</p>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                )
-                            })}
-                            </Row>
-                        </Col>
-                    </Row>
-                    <div className={"h-[36px]"}>
+                        <Row className={"pt-5 mr-[30px] ml-[36px]"}>
+                            <Col>
+                                <Row className={"md:flex md:justify-center"}>
+                                    <TotalUserNav
+                                        getAllUser={getAllUser}
+                                        handleToggleBar={handleToggleBar}
+                                    />
+                                </Row>
+                            </Col>
+                        </Row>
+                        <div className={"pt-[10px] h-[48px]"}>
+                            {animationChart ?
+                                <button
+                                    type="button"
+                                    className="inline-block rounded-full bg-danger px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]"
+                                    onClick={handleToggleBar}
+                                >
+                                    Bar Chart
+                                </button>
+                                :
+                                <button
+                                    type="button"
+                                    className="inline-block rounded-full bg-warning px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)]"
+                                    onClick={handleToggleBar}
+                                >
 
-                    </div>
-                    <Row>
-                        <Col className={"w-full h-[330px] flex justify-center"}>
-                            <LineChartsIdeas
-                                getAllUser={getAllUser}
-                            />
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
+                                    Line Chart
+                                </button>
+                            }
+
+                        </div>
+                        <Row className={"relative h-[300px] w-full overflow-hidden"}>
+                           <ManagerChart
+                           getAllUser = {getAllUser}
+                           animationChart={animationChart}
+                           setAnimationChart={setAnimationChart}
+                           />
+                        </Row>
+                    </Container>
+                </section> :
+                <div>Loading...</div>}
         </>
     )
 }

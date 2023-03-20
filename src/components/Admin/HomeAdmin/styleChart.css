@@ -1,0 +1,9 @@
+.line-chart {
+    overflow: hidden;
+    transition: all 0.5s ease 0s;
+}
+.bar-chart {
+    overflow: hidden;
+    transition: all 0.5s ease 0s;
+    transform: translateX(100%);
+}

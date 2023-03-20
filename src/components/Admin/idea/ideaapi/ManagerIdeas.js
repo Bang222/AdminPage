@@ -3,10 +3,9 @@ import React, {useEffect, useLayoutEffect, useState} from 'react';
 import TableIdeas from "./TableIdeas";
 import {Col, Container, Row} from "react-bootstrap";
 import {CSVLink} from "react-csv";
-import {useSelector} from "react-redux";
 
 const ManagerIdeas = (props) => {
-    const {fetchUpdateIdeas, getAllIdea, page, setPage, fetchIdeas} = props
+    const {fetchUpdateIdeas, getAllIdea, page, setPage, fetchIdeas,fetchDeleteIdeas} = props
     const headers = [
         {label: "ID", key: "id"},
         {label: "Author", key: "user"},
@@ -55,6 +54,7 @@ const ManagerIdeas = (props) => {
                                 setPage={setPage}
                                 page={page}
                                 fetchUpdateIdeas={fetchUpdateIdeas}
+                                fetchDeleteIdeas={fetchDeleteIdeas}
                             />
                         </Col>
                     </Row>

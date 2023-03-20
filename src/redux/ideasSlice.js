@@ -18,6 +18,11 @@ export const IdeasSlice = createSlice({
             isFetching: false,
             error: false,
         },
+        deleteIdeas: {
+            isFetching: false,
+            error: false,
+            deleteSuccess:false,
+        },
         msg:""
     },
     reducers : {
@@ -75,11 +80,26 @@ export const IdeasSlice = createSlice({
             state.updateIdeas.error = true;
             state.updateIdeas.success = false;
         },
+        deleteIdeaStart: (state) => {
+            state.deleteIdeas.error = false;
+            state.deleteIdeas.success = false;
+            state.deleteIdeas.isFetching =true;
+        },
+        deleteIdeasError: (state) => {
+            state.deleteIdeas.error = true;
+            state.deleteIdeas.isFetching = false;
+            state.deleteIdeas.success = false;
+        },
+        deleteIdeasSuccess :(state) => {
+            state.deleteIdeas.success = true;
+            state.deleteIdeas.error = false;
+            state.deleteIdeas.isFetching = false;
+        },
     }
 })
 export const {getIdeasSuccess,getIdeasError,getIdeaStart,
     getCommentSuccess,getCommentError,getCommentStart,
     deleteSuccess,deleteError,deleteStart,updateIdeaFailure,
-    updateIdeaSuccess,updateIdeaStart
+    updateIdeaSuccess,updateIdeaStart,deleteIdeaStart,deleteIdeasSuccess,deleteIdeasError
 } = IdeasSlice.actions
 export default IdeasSlice.reducer

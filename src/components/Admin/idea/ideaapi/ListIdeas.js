@@ -2,6 +2,8 @@ import dateFormat from "dateformat";
 import ManagerComments from "./comment/ManagerComments";
 import {useEffect, useState} from "react";
 import ModalEditIdeas from "./ModalEditIdeas";
+import {toast} from "react-toastify";
+import {useSelector} from "react-redux";
 
 export const checkLike = (likes) => {
     let like=0
@@ -37,8 +39,9 @@ export const ListIdeas = (props) => {
         handlePageClick,
         fetchIdeas,
         createdAt,
-        fetchUpdateIdeas
+        fetchUpdateIdeas,fetchDeleteIdeas
     } = props
+    const err = useSelector((state) => state.listIdeas.ideas?.isFetching)
     const [totalLike,setTotalLike] = useState("")
     const [showEditUser,setShowEditUser] = useState(false);
     const dateCreateIdeas =dateFormat(createdAt,"dddd, mmmm dS, yyyy")
@@ -48,6 +51,18 @@ export const ListIdeas = (props) => {
         setTotalLike(checkLike(likes))
         // console.log(totalLike)
     },[likes])
+    const handleDelete = async (id) => {
+        const deleteIdeas = {
+            idieaId : id
+        }
+
+        if(!err) {
+            await fetchDeleteIdeas(deleteIdeas)
+            await fetchIdeas(page)
+            toast.success("Successfully deleted")
+        }
+        else toast.error("Error deleting")
+    }
     return (
         <>
             <tr>
@@ -90,6 +105,7 @@ export const ListIdeas = (props) => {
                 </td>
                 <td>
                     <button type="button" className="text-red-600 font-bold"
+                            onClick={()=>handleDelete(id)}
                     >Delete
                     </button>
                 </td>

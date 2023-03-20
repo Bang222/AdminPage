@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 import {Col, Row} from "react-bootstrap";
 
 const TableIdeas = (props) => {
-    const {fetchUpdateIdeas,fetchIdeas, getAllIdea,setPage,page} = props
+    const {fetchUpdateIdeas, fetchIdeas, getAllIdea, setPage, page,fetchDeleteIdeas} = props
     const handlePageChange = (event) => {
         fetchIdeas(+event.selected + 1)
         setPage(+event.selected + 1)
@@ -47,6 +47,7 @@ const TableIdeas = (props) => {
                                     fetchIdeas={fetchIdeas}
                                     handlePageClick={handlePageChange}
                                     fetchUpdateIdeas={fetchUpdateIdeas}
+                                    fetchDeleteIdeas={fetchDeleteIdeas}
                                     page={page}
                                 />
                                 </tbody>
@@ -67,7 +68,7 @@ const TableIdeas = (props) => {
                 </Col>
             </Row>
             <div className={"flex justify-center"}><strong>Table:</strong>Manager Ideas</div>
-            <div className="paginate flex justify-center p-1" >
+            <div className="paginate flex justify-center p-1">
                 <ReactPaginate
                     previousLabel="Previous"
                     nextLabel="Next"

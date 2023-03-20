@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
     return (
-        <>
+        <div className = "font-poppins">
             <RoutesApp/>
             <ToastContainer
                 position="top-right"
@@ -19,7 +19,7 @@ const App = () => {
                 pauseOnHover
                 theme="colored"
             />
-        </>
+        </div>
     )
 }
 

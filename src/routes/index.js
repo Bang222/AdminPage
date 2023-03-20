@@ -65,6 +65,16 @@ const RoutesApp = () => {
                             <Route path="/" element={<MobileSize/>}>
                                 <Route path="login" element={<MobileSize/>}/>
                             </Route>
+                            <Route path="home" element={<MobileSize/>}>
+                                <Route index element={<MobileSize/>}/>
+                                <Route path="categories" element={<MobileSize/>}/>
+                                <Route path="users" element={<MobileSize/>}/>
+                            </Route>
+                            <Route path="admin" element={<MobileSize/>}>
+                            <Route index element={<MobileSize/>}/>
+                            <Route path="manager-users" element={<MobileSize/>}/>
+                            <Route path="manager-ideas" element={<MobileSize/>}/>
+                            </Route>
                         </>
                     }
                 </Routes>

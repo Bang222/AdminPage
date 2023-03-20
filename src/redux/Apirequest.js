@@ -10,14 +10,14 @@ import {
     getUserSuccess
 } from "./userSlice";
 import {
-    deleteError,
+    deleteError, deleteIdeasError, deleteIdeasSuccess, deleteIdeaStart,
     deleteStart, deleteSuccess,
     getCommentError,
     getCommentStart,
     getCommentSuccess,
     getIdeasError,
     getIdeasSuccess,
-    getIdeaStart, updateIdeaFailure, updateIdeaSuccess
+    getIdeaStart, updateIdeaFailure, updateIdeaStart, updateIdeaSuccess
 } from "./ideasSlice";
 import {
     addCategoryFailure,
@@ -81,16 +81,27 @@ export const getAllIdeas = async (accessToken, dispatch, axiosJWT, page) => {
     }
 }
 export const updateIdeas = async (dispatch, axiosJWT, accessToken, data) => {
-    dispatch(updateIdeaSuccess())
+    dispatch(updateIdeaStart())
     try {
         const res = await axiosJWT.post('http://localhost:3001/idieas/update', data,
-           {
+            {
                 headers: {Authorization: `Bearer ${accessToken}`}
             })
         dispatch(updateIdeaSuccess(res.data))
         // console.log("check",res.data)
     } catch (err) {
         dispatch(updateIdeaFailure(err))
+    }
+}
+export const deleteIdea = async (accessToken, dispatch, axiosJWT, id) => {
+    dispatch(deleteIdeaStart())
+    try {
+        const res = await axiosJWT.post("http://localhost:3001/idieas/delete", id, {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        })
+        dispatch(deleteIdeasSuccess(res.data))
+    } catch (err) {
+        dispatch(deleteIdeasError)
     }
 }
 export const editUser = async (accessToken, dispatch, roles, userId, axiosJWT, navigate) => {

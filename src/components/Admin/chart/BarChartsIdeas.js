@@ -3,7 +3,7 @@ import {Bar} from "react-chartjs-2";
 import {Chart as ChartJS} from 'chart.js/auto'
 
 
-const LineChartsIdeas = (props) => {
+const BarChartsIdeas = (props) => {
     const {getAllUser} = props
     const state = {
         labels: getAllUser.map((item) => !item.roles.includes("Adminstrator") ? item.username : undefined),
@@ -43,4 +43,4 @@ const LineChartsIdeas = (props) => {
 
     )
 }
-export default LineChartsIdeas
+export default BarChartsIdeas

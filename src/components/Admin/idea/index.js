@@ -3,7 +3,7 @@ import React, {useEffect, useLayoutEffect, useState} from "react";
 import jwt_decode from "jwt-decode";
 import {createAxios} from "../../../createInstance";
 import {loginSuccess} from "../../../redux/authSlice";
-import {getAllIdeas, updateIdeas} from "../../../redux/Apirequest";
+import {deleteIdea, getAllIdeas, updateIdeas} from "../../../redux/Apirequest";
 import {Navigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import ManagerIdeas from "./ideaapi/ManagerIdeas";
@@ -21,7 +21,8 @@ const Ideas = () => {
     const checkRole = jwt_decode(user?.accessToken)
     const role = checkRole.roles?.includes("Adminstrator")
     const fetchIdeas = (page) => getAllIdeas(user?.accessToken, dispatch, axiosJWT, page)
-    const fetchUpdateIdeas = (data, files) => updateIdeas(dispatch, axiosJWT, user?.accessToken, data)
+    const fetchUpdateIdeas = (data) => updateIdeas(dispatch, axiosJWT, user?.accessToken, data)
+    const fetchDeleteIdeas = (id) => deleteIdea(user?.accessToken,dispatch, axiosJWT, id)
     useEffect(() => {
         fetchIdeas(1)
     }, [])
@@ -37,6 +38,7 @@ const Ideas = () => {
                         loading={loading}
                         fetchIdeas={fetchIdeas}
                         fetchUpdateIdeas={fetchUpdateIdeas}
+                        fetchDeleteIdeas={fetchDeleteIdeas}
                     />
                 </>
             ) : <div className="flex justify-center pt-4"><span className="loader"></span></div>
