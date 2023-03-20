@@ -28,13 +28,13 @@ const ListComments = (props) => {
             toast.success("Update Success")
         } else toast.error("Content Can not empty")
     }
-    const fetchDelete =  (e) => {
+    const fetchDelete = (e) => {
          deleteComment(axiosJWT, dispatch, user?.accessToken, e)
     }
     const handleDelete = async (e) => {
         if (!deleteErr) {
-             fetchDelete(e)
-             fetchIdeas(page)
+             await fetchDelete(e)
+             await fetchIdeas(page)
             toast.success("Comment Deleted Successfully")
         } else toast.error("Err")
     }
