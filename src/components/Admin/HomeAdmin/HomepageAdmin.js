@@ -1,9 +1,8 @@
 import {Col, Container, Row} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import Ideas from "../idea";
 import {getAllUsers} from "../../../redux/Apirequest";
-import {Navigate, useNavigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {createAxios} from "../../../createInstance";
 import {loginSuccess} from "../../../redux/authSlice";
 import jwt_decode from "jwt-decode";
@@ -13,8 +12,8 @@ import ManagerChart from "./ManagerChart";
 const HomepageAdmin = () => {
     const auth = useSelector((state) => state.auth.login?.currentUser)
     const getAllUser = useSelector((state) => state.listUsers.users?.allUsers)
+    const getAllIdea = useSelector((state) => state.listIdeas.ideas?.allIdeas)
     const [animationChart, setAnimationChart] = useState(true)
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     let axiosJWT = createAxios(auth, dispatch, loginSuccess)
     const checkRole = jwt_decode(auth.accessToken)
@@ -26,6 +25,8 @@ const HomepageAdmin = () => {
     const handleToggleBar= () => {
         setAnimationChart(!animationChart)
     }
+
+    console.log("checkdata",getAllIdea)
     return !role ? <Navigate to="/home"/> : (
         <>
             {getAllUser ? <section style={{transition: "width .9s ease-in"}}>

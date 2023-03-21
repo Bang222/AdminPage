@@ -19,6 +19,8 @@ const ModalEditIdeas = (props) => {
         userIdeas,
         categories,
         anonymous,
+        fetchIdeas,
+        page,
     } = props
     const err = useSelector((state) => state.listIdeas.updateIdeas?.error)
     const pending = useSelector((state) => state.listIdeas.updateIdeas?.isFetching)
@@ -31,12 +33,6 @@ const ModalEditIdeas = (props) => {
     const [file, setFile] = useState("")
     const [uploadFile, setUploadFile] = useState()
     const [previewFile, setPreviewFile] = useState("")
-    // console.log("inputContent",inputContent)
-    // console.log("inputCloseCommentAt",inputCloseCommentAt)
-    // console.log("inputCloseIdieaAt",inputCloseIdieaAt)
-    // console.log("category",category)
-    // console.log("IdeaId",IdeaId)
-    // console.log("file",file)
 
     const dateCloseComment = dateFormat(inputCloseCommentAt, "dddd, mmmm dS, yyyy")
     const dateCloseIdeas = dateFormat(inputCloseIdieaAt, "dddd, mmmm dS, yyyy")
@@ -53,7 +49,7 @@ const ModalEditIdeas = (props) => {
     const handleClose = () => {
         setShow(!show)
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         if (_.isEmpty(inputContent)) {
             toast.warn("Content is empty")
         }
@@ -61,10 +57,11 @@ const ModalEditIdeas = (props) => {
         data.append('idieaId',IdeaId)
         data.append('content',inputContent)
         data.append('anonymous',InputAnonymous)
-        data.append('closeIdieaAt',closeIdieaAt)
-        data.append('closeCommentAt',closeCommentAt)
-        data.append('files',file)
-        fetchUpdateIdeas(data)
+        data.append('files[]',file)
+        await fetchUpdateIdeas(data)
+        await fetchIdeas(page)
+        toast.success("Update Successfully")
+        handleClose()
     }
     // console.log("check file", file)
     const handleUploadFile = (event) => {
@@ -103,7 +100,7 @@ const ModalEditIdeas = (props) => {
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridCity">
                             <Form.Label>Total Categories</Form.Label>
-                            <Form.Control type="text" value={categories}
+                            <Form.Control type="text" value={categories.map((item)=> item.categoryName)}
                                           disabled
                             />
                         </Form.Group>

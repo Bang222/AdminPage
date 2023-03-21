@@ -6,7 +6,7 @@ import {Chart as ChartJS} from 'chart.js/auto'
 const BarChartsIdeas = (props) => {
     const {getAllUser} = props
     const state = {
-        labels: getAllUser.map((item) => !item.roles.includes("Adminstrator") ? item.username : undefined),
+        labels: getAllUser.map((item) =>  item.username),
         datasets: [
             {
                 label: "Total Ideas",
@@ -16,7 +16,7 @@ const BarChartsIdeas = (props) => {
                 ],
                 borderColor: "rgba(0,0,0,1)",
                 borderWidth: 2,
-                data: getAllUser.map((item) => !item.roles.includes("Adminstrator") ? item.Idiea.length : undefined)
+                data: getAllUser.map((item) => item.Idiea.length)
             }
         ]
     }

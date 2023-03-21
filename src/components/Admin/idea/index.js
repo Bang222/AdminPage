@@ -26,7 +26,6 @@ const Ideas = () => {
     useEffect(() => {
         fetchIdeas(1)
     }, [])
-    // console.log("check data",getAllIdea)
     return !role ? <> <Navigate to={"/home"}/>{toast.warning("You can not allow to to that")} </>
         : getAllIdea ?
             (

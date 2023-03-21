@@ -1,5 +1,4 @@
 import './style.css'
-import React, {useEffect, useLayoutEffect, useState} from 'react';
 import TableIdeas from "./TableIdeas";
 import {Col, Container, Row} from "react-bootstrap";
 import {CSVLink} from "react-csv";
@@ -19,8 +18,10 @@ const ManagerIdeas = (props) => {
     const csvLinkIdeas = {
         filename: "Ideas.csv",
         headers: headers,
-        data: getAllIdea
+        data: getAllIdea.idieas
     }
+    const sumIdeas = getAllIdea.idieas.map((item) => item.comments.length).reduce((partialSum, a) => partialSum + a, 0)
+    console.log("check data",sumIdeas)
     return (
         <>
             <title>MANAGER IDEAS</title>

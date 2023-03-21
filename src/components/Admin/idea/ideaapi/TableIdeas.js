@@ -29,7 +29,7 @@ const TableIdeas = (props) => {
                             <th scope="col">Delete</th>
                         </tr>
                         </thead>
-                        {getAllIdea?.length > 0 && getAllIdea.map((item) => {
+                        {getAllIdea.idieas?.length > 0 && getAllIdea.idieas.map((item) => {
                             return (
                                 <tbody key={item.id} className={"text-xs"}>
                                 <ListIdeas
@@ -81,7 +81,7 @@ const TableIdeas = (props) => {
                     breakLabel="..."
                     breakClassName="page-item"
                     breakLinkClassName="page-link"
-                    pageCount={8}
+                    pageCount={getAllIdea.pages}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={handlePageChange}

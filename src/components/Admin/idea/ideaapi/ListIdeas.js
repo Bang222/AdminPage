@@ -113,6 +113,7 @@ export const ListIdeas = (props) => {
             <ModalEditIdeas
                 key={id}
                 IdeaId = {id}
+                page={page}
                 setShow={setShowEditUser}
                 show = {showEditUser}
                 userIdeas={userIdeas}
@@ -121,6 +122,7 @@ export const ListIdeas = (props) => {
                 closeCommentAt={closeCommentAt}
                 content={content}
                 anonymous={anonymous}
+                fetchIdeas={fetchIdeas}
                 fetchUpdateIdeas={fetchUpdateIdeas}
             />
         </>

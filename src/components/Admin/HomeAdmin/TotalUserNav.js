@@ -3,15 +3,14 @@ import {useState} from "react";
 import './styleChart.css'
 
 const TotalUserNav = (props) => {
-    const{getAllUser,handleToggleBar} =props
+    const{getAllUser} =props
+    const sumIdeas = getAllUser.map((item)=> item.Idiea.length).reduce((partialSum, a) => partialSum + a, 0)
     const [totalInformation, setTotalInformation] = useState([
-        {id:1,name: "User", total:!getAllUser.includes("Ad"), icon: "fa fa-user"},
-        {id:2,name: "Ideas", total: getAllUser.length, icon: "fa fa-lightbulb"},
+        {id:1,name: "User", total:getAllUser.length, icon: "fa fa-user"},
+        {id:2,name: "Ideas", total:sumIdeas , icon: "fa fa-lightbulb"},
         {id:3,name: "Comment", total: "120", icon: "fa fa-comment"},
-        {id:4,name: "Department", total: "120", icon: "fa fa-book"},
-        // {name: "Categories", total: "120", icon: "fa fa-book"},
-    ])
-
+        {id:4,name: "Department", total: 4, icon: "fa fa-book"},
+    ]);
     return (
         <>
         {totalInformation && totalInformation?.map((item) => {

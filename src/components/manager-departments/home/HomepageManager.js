@@ -1,14 +1,22 @@
-import {useState} from "react";
+import {useEffect} from "react";
 import {Col, Container, Row} from "react-bootstrap";
+import {useDispatch, useSelector} from "react-redux";
+import {createAxios} from "../../../createInstance";
+import {loginSuccess} from "../../../redux/authSlice";
+import {getAllCategories} from "../../../redux/Apirequest";
+import ManagerNav from "./ManagerNav";
 
 const HomepageManager = () => {
-    const [check, setCheck] = useState([
-        {name: "User", total: "120", icon: "fa fa-user"},
-        {name: "Ideas", total: "120", icon: "fa fa-lightbulb"},
-        {name: "Comment", total: "120", icon: "fa fa-comment"},
-        {name: "Department", total: "120", icon: "fa fa-department"},
-        {name: "Categories", total: "120", icon: "fa fa-book"},
-    ])
+    const auth = useSelector((state) => state.auth.login?.currentUser);
+    const listAllCategories = useSelector((state) => state.departments.department?.allDepartments)
+
+    const dispatch = useDispatch()
+    let axiosJWT = createAxios(auth, dispatch, loginSuccess)
+
+    const fetchListCategories =  () =>  getAllCategories(dispatch, axiosJWT, auth.accessToken)
+     useEffect(()=>{
+         fetchListCategories()
+     },[])
     return (
         <>
             <section>
@@ -30,20 +38,8 @@ const HomepageManager = () => {
                     </Row>
                     <Row className={"pt-5 mr-[30px] ml-[36px]"}>
                         <Col className={"flex justify-between m-2"}>
-                            {check && check.map((item, index) => {
-                                return (
-                                    <Row key={index}
-                                        className={"shadow-lg shadow-black-500/50 hover:bg-black hover:ease-in hover:duration-300 hover:text-white bg-gray-500  w-[150px] h-[70px] border-solid border-2 border-white-500 rounded-md items-center cursor-pointer"}>
-                                        <Col className={""} md={"2"}>
-                                            <i className={`${item.icon}`}/>
-                                        </Col>
-                                        <Col className={"flex grid justify-start"} md={"10"}>
-                                            <p className="">{item.name}</p>
-                                            <p className="">Total: {item.total}</p>
-                                        </Col>
-                                    </Row>
-                                )
-                            })}
+                            {listAllCategories? <ManagerNav
+                                listAllCategories={listAllCategories}/> : <div>Loading</div>}
                         </Col>
                     </Row>
                 </Container>
