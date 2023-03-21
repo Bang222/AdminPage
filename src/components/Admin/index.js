@@ -6,7 +6,6 @@ const IndexAdmin = (props) => {
     const {auth,checkRoleAdmin} = props
     return(
         <>
-            <title>HOME</title>
             <section style={{display: "flex", justifyContent: "space-between"}}>
                 <header>
                     <Layout

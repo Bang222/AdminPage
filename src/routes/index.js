@@ -2,7 +2,6 @@ import ManagerUsers from "../components/Admin/users";
 import Login from "../components/auth/login/Login";
 import {ProSidebarProvider} from "react-pro-sidebar";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
-import ManagerUserCategories from "../components/manager-departments/users";
 import ManagerCategories from "../components/manager-departments/Department";
 import Index from "../components/auth/checkUserLogin";
 import Authorization from "../components/auth/checkRoles";
@@ -51,7 +50,6 @@ const RoutesApp = () => {
                                 <Route path="home" element={<Index><Authorization><IndexManager/></Authorization></Index>}>
                                     <Route index element={<HomepageManager/>}/>
                                     <Route path="categories" element={<ManagerCategories/>}/>
-                                    <Route path="users" element={<ManagerUserCategories/>}/>
                                 </Route>
                                 <Route path="admin" element={<Index><Authorization><IndexAdmin/></Authorization></Index>}>
                                     <Route index element={<HomepageAdmin/>}/>
@@ -68,7 +66,6 @@ const RoutesApp = () => {
                             <Route path="home" element={<MobileSize/>}>
                                 <Route index element={<MobileSize/>}/>
                                 <Route path="categories" element={<MobileSize/>}/>
-                                <Route path="users" element={<MobileSize/>}/>
                             </Route>
                             <Route path="admin" element={<MobileSize/>}>
                             <Route index element={<MobileSize/>}/>

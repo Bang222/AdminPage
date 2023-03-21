@@ -11,7 +11,6 @@ import jwt_decode from "jwt-decode";
 const ManagerCategories = () => {
     const auth = useSelector((state) => state.auth.login?.currentUser);
     const listAllCategories = useSelector((state) => state.departments.department?.allDepartments)
-    const loading = useSelector((state) => state.departments.department?.isFetching)
     const check = jwt_decode(auth?.accessToken)
     const role = check?.roles.includes("Quality Assurance Manager")
 
@@ -27,7 +26,9 @@ const ManagerCategories = () => {
         fetchListCategories()
     }, [])
 
-    return !role ? <Navigate to={"/admin"}/> : <>{ !listAllCategories ?
+    return !role ? <Navigate to={"/admin"}/> : <>
+        <title>Categories</title>
+        { !listAllCategories ?
         <div className="flex justify-center pt-4"><span className="loader-manager"></span></div> :
         (
             <>

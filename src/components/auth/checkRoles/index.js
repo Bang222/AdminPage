@@ -10,7 +10,7 @@ const Authorization = () => {
     const checkAdmin = jwt_decode(auth?.accessToken)
     const checkRole = checkAdmin?.roles.find(x => x === 'Quality Assurance Manager' || x === "Adminstrator")
     const checkRoleAdmin = checkAdmin?.roles.find(x => x === "Adminstrator")
-    console.log("check", checkRoleAdmin)
+    // console.log("check", checkRoleAdmin)
     return !checkRole
         ?
         <>

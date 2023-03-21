@@ -17,7 +17,7 @@ const PieChart = (props) => {
             }
         ]
     }
-    console.log("check data ",listAllCategories)
+    // console.log("check data ",listAllCategories)
     const options = {
         plugins: {
             legend: {

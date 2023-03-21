@@ -29,7 +29,9 @@ const HomepageAdmin = () => {
     console.log("checkdata",getAllIdea)
     return !role ? <Navigate to="/home"/> : (
         <>
-            {getAllUser ? <section style={{transition: "width .9s ease-in"}}>
+            <title>Admin</title>
+            {getAllUser ?
+                <section style={{transition: "width .9s ease-in"}}>
                     <Container>
                         <Row className={"pt-[24px] m-[1px] pb-[30px]"}>
                             <Row className={"flex text-center font-bold"}>

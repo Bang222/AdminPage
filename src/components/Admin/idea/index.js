@@ -30,6 +30,7 @@ const Ideas = () => {
         : getAllIdea ?
             (
                 <>
+                    <title>Manager-ideas</title>
                     <ManagerIdeas
                         getAllIdea={getAllIdea}
                         setPage={setPage}

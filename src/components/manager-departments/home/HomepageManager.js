@@ -20,6 +20,7 @@ const HomepageManager = () => {
     }, [])
     return (
         <>
+            <title>Home</title>
             <section>
                 <Container>
                     <Row className={"pt-[24px] m-[1px] pb-[30px]"}>

@@ -1,12 +1,10 @@
-import {Navigate, Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import Layout from "../Layout";
-import jwt_decode from "jwt-decode";
 
 const IndexManager = (props) => {
     const {auth, checkRoleAdmin} = props
     return (
             <>
-                <title> HOME < /title>
                 <section style={{display: "flex", justifyContent: "space-between"}}>
                     <header>
                         <Layout

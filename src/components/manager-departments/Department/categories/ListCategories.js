@@ -19,7 +19,7 @@ const ListCategories = (props) => {
             toast.success("Delete successfully")
         } else toast.error("You can not Delete")
     }
-    console.log("list");
+    // console.log("list");
     return loading ? <span className="loader"></span> : (
         <>
             <tr>
