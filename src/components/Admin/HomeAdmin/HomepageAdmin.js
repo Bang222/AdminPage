@@ -32,14 +32,8 @@ const HomepageAdmin = () => {
             {getAllUser ? <section style={{transition: "width .9s ease-in"}}>
                     <Container>
                         <Row className={"pt-[24px] m-[1px] pb-[30px]"}>
-                            <Row className={"flex justify-between font-bold"}>
-                                <Col className={"text-4xl"}><h2> Dash Board ADMIN</h2></Col>
-                                <Col className={"text-right font-bold"}>
-                        <span
-                            className="font-bold cursor-pointer bg-blue-200 inline-block rounded-full border-2 border-info px-6 pt-2 pb-[6px] text-xs font-medium uppercase leading-normal text-info transition duration-150 ease-in-out hover:border-info-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-info-600 focus:border-info-600 focus:text-info-600 focus:outline-none focus:ring-0 active:border-info-700 active:text-info-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
-                         DownLoad Zip
-                    </span>
-                                </Col>
+                            <Row className={"flex text-center font-bold"}>
+                                <Col className={"text-4xl "}><h2> Dash Board ADMIN</h2></Col>
                             </Row>
                         </Row>
                         <Row className={"flex justify-center"}>

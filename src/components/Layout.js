@@ -22,20 +22,11 @@ const Layout = (props) => {
     const menusOfManager = [
         {name: "Home", link: "/home", icon: AiFillHome},
         {name: "categories", link: "categories", icon: MdOutlineDashboard},
-        {name: "users", link: "users", icon: AiOutlineUser},
-        {name: "analytics", link: "/", icon: TbReportAnalytics, margin: true},
-        {name: "File Manager", link: "/", icon: FiFolder},
-        {name: "Cart", link: "/", icon: FiShoppingCart},
-        {name: "Saved", link: "/", icon: AiOutlineHeart, margin: true},
     ];
     const menus = [
         {name: "Home", link: "/admin", icon: AiFillHome},
         {name: "Manager Ideas", link: "manager-ideas", icon: MdOutlineDashboard},
         {name: "Manager Users", link: "manager-users", icon: AiOutlineUser},
-        {name: "analytics", link: "/", icon: TbReportAnalytics, margin: true},
-        {name: "File Manager", link: "/", icon: FiFolder},
-        {name: "Cart", link: "/", icon: FiShoppingCart},
-        {name: "Saved", link: "/", icon: AiOutlineHeart, margin: true},
     ];
     const [open, setOpen] = useState(true);
     return (
@@ -84,7 +75,7 @@ const Layout = (props) => {
                                         </h2>
                                     </Link>
                                 ))}
-                                <section className ="flex pl-3">
+                                <section className ="flex pl-3 pt-[500px]">
                                     <i className="fa fa-sign-out" style={{paddingTop:"3px",cursor: "pointer"}} aria-hidden="true"
                                        onClick={handleLogout}
                                     ></i>
@@ -103,9 +94,6 @@ const Layout = (props) => {
                                 </section>
                             </div>
                         </div>
-                        {/*<div className="m-3 text-xl text-gray-900 font-semibold">*/}
-                        {/*    Bang*/}
-                        {/*</div>*/}
                     </section>
                     :
                     <section className="flex gap-6">
@@ -150,7 +138,7 @@ const Layout = (props) => {
                                         </h2>
                                     </Link>
                                 ))}
-                                <div className ="flex pl-3 ">
+                                <div className ="flex pl-3" style={{paddingTop:"500px"}} >
                                     <i className="fa fa-sign-out" style={{paddingTop:"3px",cursor: "pointer"}} aria-hidden="true"
                                        onClick={handleLogout}
                                     ></i>
@@ -168,9 +156,6 @@ const Layout = (props) => {
                                 </div>
                             </div>
                         </div>
-                        {/*<div className="m-3 text-xl text-gray-900 font-semibold">*/}
-                        {/*    Bang*/}
-                        {/*</div>*/}
                     </section>
             }
         </>
