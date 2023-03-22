@@ -39,15 +39,11 @@ const HomepageManager = () => {
                                 listAllCategories={listAllCategories}/> : <div>Loading</div>}
                         </Col>
                     </Row>
-                    <Row>
-                        <Col className="flex justify-center w-[300px] h-[300px]">
                             {
                                 listAllCategories ? <PieChart
                                     listAllCategories={listAllCategories}
                                 /> : <div>Loading...</div>
                             }
-                        </Col>
-                    </Row>
                 </Container>
             </section>
         </>

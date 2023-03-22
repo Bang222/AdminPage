@@ -1,9 +1,11 @@
-import {Pie} from "react-chartjs-2";
+import {Line, Pie} from "react-chartjs-2";
+import {Chart as ChartJS} from 'chart.js/auto'
+import {Col, Row} from "react-bootstrap";
 
 const PieChart = (props) => {
     const {listAllCategories} = props
     const state = {
-        labels: ["Total Categories","user Categories"],
+        labels: ["Total Categories", "user Categories"],
         datasets: [
             {
                 label: "Total Categories",
@@ -12,7 +14,7 @@ const PieChart = (props) => {
                     '#0000CD',
                 ],
                 borderColor: "rgba(0,0,0,1)",
-                borderWidth: 2,
+                borderWidth: 3,
                 data: [listAllCategories.length, 2]
             }
         ]
@@ -22,7 +24,7 @@ const PieChart = (props) => {
         plugins: {
             legend: {
                 display: true,
-                position: "bottom"
+                position: "bottom",
             },
             title: {
                 text: "Chart Manager Categories",
@@ -31,12 +33,16 @@ const PieChart = (props) => {
             }
         }
     }
-    return(
+    return (
         <>
-            <Pie
-                data={state}
-                options={options}
-            />
+            <Row className={""}>
+                <Col className="flex justify-center w-[300px] h-[300px]" >
+                    <Pie
+                        data={state}
+                        options={options}
+                    />
+                </Col>
+            </Row>
         </>
     )
 }
