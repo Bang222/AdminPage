@@ -1,27 +1,28 @@
 import ListUsers from "./ListUsers";
+import "./custom-style.css"
 
 const TableUsers = (props) => {
     const {fetchUser, getAllUsers, fetchBanUser} = props
 
     //console.log(getAllUsers)
     return (
-        <div className="table-user" style={{display: "flex"}}>
-            <table id="customers">
+        <div className="table-wrapper-scroll-y my-custom-scrollbar" style={{display: "flex"}}>
+            <table className={"table table-bordered table-striped mb-0"} id="customers">
                 <thead>
                 <tr>
-                    <th>id</th>
-                    <th>User Name</th>
-                    <th>firstName</th>
-                    <th>lastName</th>
-                    <th>address</th>
-                    <th>departmentId</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Active</th>
-                    <th>Role</th>
-                    <th>Total Ideas</th>
-                    <th>Edit</th>
-                    <th>Band</th>
+                    <th scope="col">id</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">firstName</th>
+                    <th scope="col">lastName</th>
+                    <th scope="col">address</th>
+                    <th scope="col">departmentId</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Active</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Total Ideas</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Band</th>
                 </tr>
                 </thead>
                 {getAllUsers && getAllUsers.map((item) => {
