@@ -26,7 +26,6 @@ const HomepageAdmin = () => {
         setAnimationChart(!animationChart)
     }
 
-    console.log("checkdata",getAllIdea)
     return !role ? <Navigate to="/home"/> : (
         <>
             <title>Admin</title>

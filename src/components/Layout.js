@@ -75,7 +75,7 @@ const Layout = (props) => {
                                         </h2>
                                     </Link>
                                 ))}
-                                <section className ="flex pl-3 pt-[500px]">
+                                <section className ="flex pl-3 pt-[300px]">
                                     <i className="fa fa-sign-out" style={{paddingTop:"3px",cursor: "pointer"}} aria-hidden="true"
                                        onClick={handleLogout}
                                     ></i>
@@ -138,7 +138,7 @@ const Layout = (props) => {
                                         </h2>
                                     </Link>
                                 ))}
-                                <div className ="flex pl-3" style={{paddingTop:"500px"}} >
+                                <div className ="flex pl-3" style={{paddingTop:"300px"}} >
                                     <i className="fa fa-sign-out" style={{paddingTop:"3px",cursor: "pointer"}} aria-hidden="true"
                                        onClick={handleLogout}
                                     ></i>
