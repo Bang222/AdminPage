@@ -20,8 +20,8 @@ const ManagerIdeas = (props) => {
         headers: headers,
         data: getAllIdea.idieas
     }
-    const sumIdeas = getAllIdea.idieas.map((item) => item.comments.length).reduce((partialSum, a) => partialSum + a, 0)
-    console.log("check data",sumIdeas)
+    const sumIdeas = getAllIdea.idieas?.map((item) => item.comments.length).reduce((partialSum, a) => partialSum + a, 0)
+    // console.log("check data",sumIdeas)
     return (
         <>
             <title>MANAGER IDEAS</title>

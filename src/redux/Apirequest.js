@@ -26,9 +26,13 @@ import {
     deleteCategoryFailure,
     deleteCategoryStart,
     deleteCategorySuccess,
-    getAllDepartmentsFailure,
-    getAllDepartmentsStart,
-    getAllDepartmentsSuccess, updateCategoryFailure, updateCategoryStart, updateCategorySuccess
+    getAllCategoriesFailure,
+    getAllCategoriesStart,
+    getAllCategoriesSuccess, getAllDepartmentsFailure,
+    getAllDepartmentsStart, getAllDepartmentsSuccess,
+    updateCategoryFailure,
+    updateCategoryStart,
+    updateCategorySuccess
 } from "./departmentSlice";
 import jwt_decode from "jwt-decode";
 
@@ -161,14 +165,14 @@ export const deleteUser = async (axiosJWT, dispatch, accessToken, userId) => {
     }
 }
 export const getAllCategories = async (dispatch, axiosJWT, accessToken) => {
-    dispatch(getAllDepartmentsStart())
+    dispatch(getAllCategoriesStart())
     try {
         const res = await axiosJWT.get('http://localhost:3001/category/all', {
             headers: {Authorization: `Bearer ${accessToken}`}
         })
-        dispatch(getAllDepartmentsSuccess(res.data))
+        dispatch(getAllCategoriesSuccess(res.data))
     } catch (err) {
-        dispatch(getAllDepartmentsFailure(err))
+        dispatch(getAllCategoriesFailure(err))
         console.log(err)
     }
 }
@@ -207,5 +211,17 @@ export const updateCategory = async (dispatch, axiosJWT, accessToken, data) => {
     } catch (err) {
         dispatch(updateCategoryFailure(err))
     }
+}
+export const getAllDepartments = async (dispatch,axiosJWT,accessToken) => {
+    dispatch(getAllDepartmentsStart())
+    try {
+        const res = await axiosJWT.get("http://localhost:3001/department/all", {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        })
+        dispatch(getAllDepartmentsSuccess(res.data))
+    } catch(err){
+        dispatch(getAllDepartmentsFailure(err))
+    }
+
 }
 

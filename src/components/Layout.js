@@ -22,6 +22,8 @@ const Layout = (props) => {
     const menusOfManager = [
         {name: "Home", link: "/home", icon: AiFillHome},
         {name: "categories", link: "categories", icon: MdOutlineDashboard},
+        {name: "Manager Ideas", link: "manager-ideas", icon: MdOutlineDashboard},
+        {name: "Manager Users", link: "manager-users", icon: AiOutlineUser},
     ];
     const menus = [
         {name: "Home", link: "/admin", icon: AiFillHome},
@@ -138,7 +140,7 @@ const Layout = (props) => {
                                         </h2>
                                     </Link>
                                 ))}
-                                <div className ="flex pl-3" style={{paddingTop:"440px"}} >
+                                <div className ="flex pl-3" style={{paddingTop:"350px"}} >
                                     <i className="fa fa-sign-out" style={{paddingTop:"3px",cursor: "pointer"}} aria-hidden="true"
                                        onClick={handleLogout}
                                     ></i>

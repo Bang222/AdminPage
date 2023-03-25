@@ -42,38 +42,21 @@ const RoutesApp = () => {
         <Router>
             <ProSidebarProvider>
                 <Routes>
-                    {desktop ? (
-                            <>
-                                <Route path="/" element={<Login/>}>
-                                    <Route path="login" element={<Login/>}/>
-                                </Route>
-                                <Route path="home" element={<Index><Authorization><IndexManager/></Authorization></Index>}>
-                                    <Route index element={<HomepageManager/>}/>
-                                    <Route path="categories" element={<ManagerCategories/>}/>
-                                </Route>
-                                <Route path="admin" element={<Index><Authorization><IndexAdmin/></Authorization></Index>}>
-                                    <Route index element={<HomepageAdmin/>}/>
-                                    <Route path="manager-users" element={<ManagerUsers/>}/>
-                                    <Route path="manager-ideas" element={<Ideas/>}/>
-                                </Route>
-                            </>
-                        )
-                        :
-                        <>
-                            <Route path="/" element={<MobileSize/>}>
-                                <Route path="login" element={<MobileSize/>}/>
-                            </Route>
-                            <Route path="home" element={<MobileSize/>}>
-                                <Route index element={<MobileSize/>}/>
-                                <Route path="categories" element={<MobileSize/>}/>
-                            </Route>
-                            <Route path="admin" element={<MobileSize/>}>
-                            <Route index element={<MobileSize/>}/>
-                            <Route path="manager-users" element={<MobileSize/>}/>
-                            <Route path="manager-ideas" element={<MobileSize/>}/>
-                            </Route>
-                        </>
-                    }
+                    <Route path="/" element={<Login/>}>
+                        <Route path="login" element={<Login/>}/>
+                    </Route>
+                    <Route path="home" element={<Index><Authorization><IndexManager/></Authorization></Index>}>
+                        <Route index element={<HomepageAdmin/>}/>
+                        <Route path="categories" element={<ManagerCategories/>}/>
+                        <Route path="manager-users" element={<ManagerUsers/>}/>
+                        <Route path="manager-ideas" element={<Ideas/>}/>
+                    </Route>
+                    <Route path="admin" element={<Index><Authorization><IndexAdmin/></Authorization></Index>}>
+                        {/*<Route index element={<HomepageAdmin/>}/>*/}
+                        {/*<Route path="manager-users" element={<ManagerUsers/>}/>*/}
+                        {/*<Route path="manager-ideas" element={<Ideas/>}/>*/}
+                    </Route>
+
                 </Routes>
             </ProSidebarProvider>
         </Router>

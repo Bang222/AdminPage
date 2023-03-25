@@ -10,17 +10,17 @@ import jwt_decode from "jwt-decode";
 
 const ManagerCategories = () => {
     const auth = useSelector((state) => state.auth.login?.currentUser);
-    const listAllCategories = useSelector((state) => state.departments.department?.allDepartments)
+    const listAllCategories = useSelector((state) => state.departments.categories?.allCategories)
     const check = jwt_decode(auth?.accessToken)
     const role = check?.roles.includes("Quality Assurance Manager")
 
     const dispatch = useDispatch()
     let axiosJWT = createAxios(auth, dispatch, loginSuccess)
 
-    const fetchListCategories =  () =>  getAllCategories(dispatch, axiosJWT, auth.accessToken)
-    const fetchAddCategory =  (data) =>  addCategory(dispatch, axiosJWT, auth.accessToken, data)
-    const fetchDeleteCategory = (id) => deleteCategory(dispatch, axiosJWT, auth.accessToken, id)
-    const fetchUpdateCategory = (data) => updateCategory(dispatch, axiosJWT, auth.accessToken, data)
+    const fetchListCategories =  () =>  getAllCategories(dispatch, axiosJWT, auth?.accessToken)
+    const fetchAddCategory =  (data) =>  addCategory(dispatch, axiosJWT, auth?.accessToken, data)
+    const fetchDeleteCategory = (id) => deleteCategory(dispatch, axiosJWT, auth?.accessToken, id)
+    const fetchUpdateCategory = (data) => updateCategory(dispatch, axiosJWT, auth?.accessToken, data)
 
     useEffect(() => {
         fetchListCategories()

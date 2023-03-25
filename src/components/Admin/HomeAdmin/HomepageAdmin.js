@@ -1,53 +1,78 @@
 import {Col, Container, Row} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getAllUsers} from "../../../redux/Apirequest";
+import {getAllDepartments, getAllUsers} from "../../../redux/Apirequest";
 import {Navigate} from "react-router-dom";
 import {createAxios} from "../../../createInstance";
 import {loginSuccess} from "../../../redux/authSlice";
 import jwt_decode from "jwt-decode";
 import TotalUserNav from "./TotalUserNav";
 import ManagerChart from "./ManagerChart";
+import axios from "axios";
 
 const HomepageAdmin = () => {
     const auth = useSelector((state) => state.auth.login?.currentUser)
     const getAllUser = useSelector((state) => state.listUsers.users?.allUsers)
     const getAllIdea = useSelector((state) => state.listIdeas.ideas?.allIdeas)
+    const listDepartments = useSelector((state) => state.departments.listDepartments?.allDepartments)
     const [animationChart, setAnimationChart] = useState(true)
     const dispatch = useDispatch()
     let axiosJWT = createAxios(auth, dispatch, loginSuccess)
     const checkRole = jwt_decode(auth.accessToken)
-    const role = checkRole.roles.includes("Adminstrator")
+    const role = checkRole.roles.includes("Quality Assurance Manager")
     const fetchUser = async () => await getAllUsers(auth?.accessToken, dispatch, axiosJWT)
     useEffect(() => {
         fetchUser()
     }, [])
-    const handleToggleBar= () => {
+    const fetchAllDepartments = async () => await getAllDepartments(dispatch, axiosJWT, auth?.accessToken)
+    useEffect(() => {
+        fetchAllDepartments()
+    }, [])
+    const handleToggleBar = () => {
         setAnimationChart(!animationChart)
     }
-
+    const [checkDepartment, setCheckDepartment] = useState(false)
+    const handleClickDetailDepartment = () => {
+        setCheckDepartment(!checkDepartment)
+    }
     return !role ? <Navigate to="/home"/> : (
         <>
             <title>Admin</title>
-            {getAllUser ?
+            {getAllUser && listDepartments ?
                 <section style={{transition: "width .9s ease-in"}}>
                     <Container>
                         <Row className={"pt-[24px] m-[1px] pb-[30px]"}>
                             <Row className={"flex text-center font-bold"}>
-                                <Col className={"text-4xl "}><h2> Dash Board ADMIN</h2></Col>
+                                <Col className={"text-4xl "}><h2> Dash Board Management</h2></Col>
                             </Row>
                         </Row>
                         <Row className={"flex justify-center"}>
-                            <Col className="h-[1px] bg-gradient-to-r from-cyan-500 to-blue-500" style={{maxWidth: "75%"}}>
+                            <Col className="h-[1px] bg-gradient-to-r from-cyan-500 to-blue-500"
+                                 style={{maxWidth: "75%"}}>
                                 <span></span>
                             </Col>
                         </Row>
+                        {checkDepartment ?
+                            <span>
+                            <button
+                                type="button"
+                                className={"inline-block rounded-full bg-success px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]"}
+                                onClick={handleClickDetailDepartment}>
+                              back to home
+                            </button>
+                         </span>
+                            :
+                            <></>
+                        }
                         <Row className={"pt-5 mr-[30px] ml-[36px]"}>
                             <Col>
                                 <Row className={"md:flex md:justify-center"}>
                                     <TotalUserNav
+                                        listDepartments={listDepartments}
                                         getAllUser={getAllUser}
                                         handleToggleBar={handleToggleBar}
+                                        checkDepartment={checkDepartment}
+                                        handleClickDetailDepartment={handleClickDetailDepartment}
                                     />
                                 </Row>
                             </Col>
@@ -74,11 +99,11 @@ const HomepageAdmin = () => {
 
                         </div>
                         <Row className={"relative h-[300px] w-full overflow-hidden"}>
-                           <ManagerChart
-                           getAllUser = {getAllUser}
-                           animationChart={animationChart}
-                           setAnimationChart={setAnimationChart}
-                           />
+                            <ManagerChart
+                                getAllUser={getAllUser}
+                                animationChart={animationChart}
+                                setAnimationChart={setAnimationChart}
+                            />
                         </Row>
                     </Container>
                 </section> :

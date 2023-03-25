@@ -3,8 +3,8 @@ import {createSlice} from "@reduxjs/toolkit";
 export const DepartmentSlice = createSlice({
     name: 'department',
     initialState: {
-        department: {
-            allDepartments: null,
+        categories: {
+            allCategories: null,
             isFetching: false,
             success: false,
             error: false,
@@ -23,28 +23,34 @@ export const DepartmentSlice = createSlice({
             isFetching: false,
             error: false,
             success: false,
+        },
+        listDepartments: {
+            allDepartments: null,
+            isFetching: false,
+            success: false,
+            error: false,
         }
     },
     reducers: {
-        getAllDepartmentsStart: (state) => {
-            state.department.isFetching = true;
-            state.department.error = false;
-            state.department.success = false;
+        getAllCategoriesStart: (state) => {
+            state.categories.isFetching = true;
+            state.categories.error = false;
+            state.categories.success = false;
         },
-            getAllDepartmentsSuccess: (state, action) => {
-            state.department.isFetching = false;
-            state.department.error = false;
-            state.department.allDepartments = action.payload;
-            state.department.success = true;
+        getAllCategoriesSuccess: (state, action) => {
+            state.categories.isFetching = false;
+            state.categories.error = false;
+            state.categories.allCategories = action.payload;
+            state.categories.success = true;
         },
-        getAllDepartmentsFailure: (state) => {
-            state.department.error = true;
-            state.department.success = false;
-            state.department.isFetching = false;
+        getAllCategoriesFailure: (state) => {
+            state.categories.error = true;
+            state.categories.success = false;
+            state.categories.isFetching = false;
         },
         addCategoryStart: (state) => {
             state.addCategory.isFetching = true;
-            state.department.success = false;
+            state.categories.success = false;
             state.addCategory.error = false;
         },
         addCategorySuccess: (state) => {
@@ -61,12 +67,12 @@ export const DepartmentSlice = createSlice({
             state.deleteCategory.error = false;
             state.deleteCategory.isFetching = true;
         },
-        deleteCategorySuccess: (state,action) => {
+        deleteCategorySuccess: (state, action) => {
             state.deleteCategory.isFetching = false;
             state.deleteCategory.error = false;
             state.deleteCategory.success = true;
         },
-        deleteCategoryFailure:(state) => {
+        deleteCategoryFailure: (state) => {
             state.deleteCategory.isFetching = false;
             state.deleteCategory.error = true;
             state.deleteCategory.success = false;
@@ -76,22 +82,39 @@ export const DepartmentSlice = createSlice({
             state.updateCategory.error = false;
             state.updateCategory.isFetching = true;
         },
-        updateCategorySuccess: (state,action) => {
+        updateCategorySuccess: (state, action) => {
             state.updateCategory.isFetching = false;
             state.updateCategory.error = false;
             state.updateCategory.success = true;
         },
-        updateCategoryFailure:(state) => {
+        updateCategoryFailure: (state) => {
             state.updateCategory.isFetching = false;
             state.updateCategory.error = true;
             state.updateCategory.success = false;
         },
+        getAllDepartmentsStart: (state) => {
+            state.listDepartments.isFetching = true;
+            state.listDepartments.error = false;
+            state.listDepartments.success = false;
+        },
+        getAllDepartmentsSuccess: (state, action) => {
+            state.listDepartments.isFetching = false;
+            state.listDepartments.error = false;
+            state.listDepartments.allDepartments = action.payload;
+            state.listDepartments.success = true;
+        },
+        getAllDepartmentsFailure: (state) => {
+            state.listDepartments.error = true;
+            state.listDepartments.success = false;
+            state.listDepartments.isFetching = false;
+        },
     }
 })
 export const {
-    getAllDepartmentsStart, getAllDepartmentsSuccess, getAllDepartmentsFailure
-    , addCategoryStart, addCategoryFailure, addCategorySuccess,
-    deleteCategoryStart,deleteCategorySuccess,deleteCategoryFailure,
-    updateCategoryFailure,updateCategorySuccess,updateCategoryStart,
+    getAllCategoriesFailure, getAllCategoriesStart, getAllCategoriesSuccess
+    ,addCategoryStart, addCategoryFailure, addCategorySuccess,
+    deleteCategoryStart, deleteCategorySuccess, deleteCategoryFailure,
+    updateCategoryFailure, updateCategorySuccess, updateCategoryStart,
+    getAllDepartmentsStart,getAllDepartmentsSuccess,getAllDepartmentsFailure
 } = DepartmentSlice.actions;
 export default DepartmentSlice.reducer;

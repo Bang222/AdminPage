@@ -19,7 +19,7 @@ const Ideas = () => {
     let axiosJWT = createAxios(user, dispatch, loginSuccess)
 
     const checkRole = jwt_decode(user?.accessToken)
-    const role = checkRole.roles?.includes("Adminstrator")
+    const role = checkRole.roles?.includes("Quality Assurance Manager")
     const fetchIdeas = (page) => getAllIdeas(user?.accessToken, dispatch, axiosJWT, page)
     const fetchUpdateIdeas = (data) => updateIdeas(dispatch, axiosJWT, user?.accessToken, data)
     const fetchDeleteIdeas = (id) => deleteIdea(user?.accessToken,dispatch, axiosJWT, id)
