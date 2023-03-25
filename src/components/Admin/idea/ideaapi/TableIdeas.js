@@ -24,7 +24,8 @@ const TableIdeas = (props) => {
                             <th scope="col">like</th>
                             <th scope="col">Active</th>
                             <th scope="col">CreateIdeas</th>
-                            <th scope="col">closeIdieaAt</th>
+                            <th scope="col">CloseIdieaAt</th>
+                            <th scope="col">File</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
@@ -44,6 +45,7 @@ const TableIdeas = (props) => {
                                     active={item.active}
                                     createdAt={item.createdAt}
                                     anonymous={item.anonymous}
+                                    totalDocuments={item.documents.length}
                                     fetchIdeas={fetchIdeas}
                                     handlePageClick={handlePageChange}
                                     fetchUpdateIdeas={fetchUpdateIdeas}

@@ -2,26 +2,31 @@ import './style.css'
 import TableIdeas from "./TableIdeas";
 import {Col, Container, Row} from "react-bootstrap";
 import {CSVLink} from "react-csv";
+import {useState} from "react";
 
 const ManagerIdeas = (props) => {
     const {fetchUpdateIdeas, getAllIdea, page, setPage, fetchIdeas,fetchDeleteIdeas} = props
     const headers = [
         {label: "ID", key: "id"},
-        {label: "Author", key: "user"},
+        {label: "First Name", key: "user.firstName"},
+        {label: "Last Name", key: "user.lastName"},
         {label: "Content", key: "content"},
-        {label: "closeCommentAt", key: "closeCommentAt"},
-        {label: "closeIdieaAt", key: "closeIdieaAt"},
-        {label: "likes", key: "likes"},
-        {label: "active", key: "active"},
-        {label: "createdAt", key: "createdAt"},
+        {label: "CloseCommentAt", key: "closeCommentAt"},
+        {label: "CloseIdieaAt", key: "closeIdieaAt"},
+        {label: "Likes", key: "likes"},
+        {label: "Active", key: "active"},
+        {label: "Categories", key: "categoryName"},
+        {label: "CreatedAt", key: "createdAt"},
+        {label: "Files", key: "documents.length"},
     ]
+    // console.log("check data CSV",dataIdeas)
     const csvLinkIdeas = {
         filename: "Ideas.csv",
         headers: headers,
         data: getAllIdea.idieas
     }
     const sumIdeas = getAllIdea.idieas?.map((item) => item.comments.length).reduce((partialSum, a) => partialSum + a, 0)
-    // console.log("check data",sumIdeas)
+    // console.log("check data",csvLinkIdeas)
     return (
         <>
             <title>MANAGER IDEAS</title>

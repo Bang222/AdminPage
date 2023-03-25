@@ -1,7 +1,7 @@
 import {Col, Container, Row} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getAllDepartments, getAllUsers} from "../../../redux/Apirequest";
+import {getAllCategories, getAllDepartments, getAllUsers} from "../../../redux/Apirequest";
 import {Navigate} from "react-router-dom";
 import {createAxios} from "../../../createInstance";
 import {loginSuccess} from "../../../redux/authSlice";
@@ -15,6 +15,7 @@ const HomepageAdmin = () => {
     const getAllUser = useSelector((state) => state.listUsers.users?.allUsers)
     const getAllIdea = useSelector((state) => state.listIdeas.ideas?.allIdeas)
     const listDepartments = useSelector((state) => state.departments.listDepartments?.allDepartments)
+    const listAllCategories = useSelector((state) => state.departments.categories?.allCategories)
     const [animationChart, setAnimationChart] = useState(true)
     const dispatch = useDispatch()
     let axiosJWT = createAxios(auth, dispatch, loginSuccess)
@@ -28,6 +29,10 @@ const HomepageAdmin = () => {
     useEffect(() => {
         fetchAllDepartments()
     }, [])
+    const fetchListCategories = () => getAllCategories(dispatch, axiosJWT, auth.accessToken)
+    useEffect(() => {
+        fetchListCategories()
+    }, [])
     const handleToggleBar = () => {
         setAnimationChart(!animationChart)
     }
@@ -35,10 +40,11 @@ const HomepageAdmin = () => {
     const handleClickDetailDepartment = () => {
         setCheckDepartment(!checkDepartment)
     }
+    console.log("get all",getAllIdea)
     return !role ? <Navigate to="/home"/> : (
         <>
             <title>Admin</title>
-            {getAllUser && listDepartments ?
+            {getAllUser && listDepartments && listAllCategories ?
                 <section style={{transition: "width .9s ease-in"}}>
                     <Container>
                         <Row className={"pt-[24px] m-[1px] pb-[30px]"}>
@@ -58,7 +64,7 @@ const HomepageAdmin = () => {
                                 type="button"
                                 className={"inline-block rounded-full bg-success px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]"}
                                 onClick={handleClickDetailDepartment}>
-                              back to home
+                              back
                             </button>
                          </span>
                             :
@@ -72,6 +78,7 @@ const HomepageAdmin = () => {
                                         getAllUser={getAllUser}
                                         handleToggleBar={handleToggleBar}
                                         checkDepartment={checkDepartment}
+                                        listAllCategories={listAllCategories}
                                         handleClickDetailDepartment={handleClickDetailDepartment}
                                     />
                                 </Row>
