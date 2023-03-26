@@ -45,7 +45,7 @@ const TableIdeas = (props) => {
                                     active={item.active}
                                     createdAt={item.createdAt}
                                     anonymous={item.anonymous}
-                                    totalDocuments={item.documents.length}
+                                    documents={item.documents}
                                     fetchIdeas={fetchIdeas}
                                     handlePageClick={handlePageChange}
                                     fetchUpdateIdeas={fetchUpdateIdeas}

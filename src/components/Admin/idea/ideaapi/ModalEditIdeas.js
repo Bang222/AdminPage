@@ -20,6 +20,7 @@ const ModalEditIdeas = (props) => {
         categories,
         anonymous,
         fetchIdeas,
+        documents,
         page,
     } = props
     const err = useSelector((state) => state.listIdeas.updateIdeas?.error)
@@ -32,8 +33,8 @@ const ModalEditIdeas = (props) => {
     const [category, setCategory] = useState()
     const [file, setFile] = useState("")
     const [uploadFile, setUploadFile] = useState()
-    const [previewFile, setPreviewFile] = useState("")
-
+    const [previewFile, setPreviewFile] = useState()
+    console.log(documents)
     const dateCloseComment = dateFormat(inputCloseCommentAt, "dddd, mmmm dS, yyyy")
     const dateCloseIdeas = dateFormat(inputCloseIdieaAt, "dddd, mmmm dS, yyyy")
     const fullName = `${userIdeas.firstName} ${userIdeas.lastName}`
@@ -147,12 +148,27 @@ const ModalEditIdeas = (props) => {
                                 </Row>
                                 <Row className="border-dotted border-2 border-indigo-600 m-2">
                                     <Col className={"p-2"}>
-                                        {previewFile ?
+                                        {documents.length >= 0 ?
                                             <Row>
-                                                <img className={"h-[300px] w-[300px]"} src={previewFile} alt={"okee"} />
-                                                <p className={"p-2"}><strong>File Name</strong>: {file.name}</p>
-                                                <p className={"p-2"}><strong>File Type</strong>: {file.type}</p>
-                                                <p className={"p-2"}><strong>File Size </strong>: {file.size} byte</p>
+                                                {/*<img className={"h-[300px] w-[300px]"} src={previewFile} alt={"okee"} />*/}
+
+
+                                                        <p className={"p-2 flex "}><strong>File Uploaded: </strong>
+                                                            {documents?.map((item) => {
+                                                                return (
+                                                                    <a href={item.url}>{item.key.split(',,')[1]},</a>
+                                                                )
+                                                            })
+                                                            }
+                                                        </p>
+
+                                                { previewFile ?
+                                                    <>
+                                                        <p className={"p-2"}><strong>File Name</strong>: {file.name}</p>
+                                                        <p className={"p-2"}><strong>File Type</strong>: {file.type}</p>
+                                                        <p className={"p-2"}><strong>File Size </strong>: {file.size} byte</p>
+                                                    </>
+                                                    :<></>}
                                             </Row>
                                             :
                                             <span

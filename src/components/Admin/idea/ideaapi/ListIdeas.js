@@ -39,7 +39,7 @@ export const ListIdeas = (props) => {
         handlePageClick,
         fetchIdeas,
         createdAt,
-        totalDocuments,
+        documents,
         fetchUpdateIdeas,fetchDeleteIdeas
     } = props
     const err = useSelector((state) => state.listIdeas.ideas?.isFetching)
@@ -98,7 +98,7 @@ export const ListIdeas = (props) => {
                 <td>{String(active)}</td>
                 <td>{dateCreateIdeas}</td>
                 <td>{dateCloseIdieaAt}</td>
-                <td>{totalDocuments}</td>
+                <td>{documents.length}</td>
                 <td>
                     <button type="button" style={{color: "blue", fontWeight: "900"}}
                         onClick={() => setShowEditUser(true)}
@@ -126,6 +126,7 @@ export const ListIdeas = (props) => {
                 anonymous={anonymous}
                 fetchIdeas={fetchIdeas}
                 fetchUpdateIdeas={fetchUpdateIdeas}
+                documents={documents}
             />
         </>
     )

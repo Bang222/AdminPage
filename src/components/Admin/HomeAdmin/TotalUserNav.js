@@ -59,7 +59,7 @@ const TotalUserNav = (props) => {
                                 key={item.id}
                                 md={6}
                                 sx={12}
-                                className={"flex justify-between m-2 max-w-[1366px] mr-[24px] shadow-lg shadow-black-500/50 hover:bg-black hover:ease-in hover:duration-300 hover:text-white bg-gray-500 w-[190px]  max-w-[190px] h-[108px] border-solid border-2 border-white-500 rounded-md items-center cursor-default"}>
+                                className={"text-sm flex justify-between m-2 max-w-[1366px] mr-[24px] shadow-lg shadow-black-500/50 hover:bg-black hover:ease-in hover:duration-300 hover:text-white bg-gray-500 w-[180px]  max-w-[180px] h-[108px] border-solid border-2 border-white-500 rounded-md items-center cursor-default"}>
                                 <Row>
                                     <Col className={"flex items-center"} md={"3"} style={{fontSize: "24px"}}>
                                         <i className={`${item.icon}`}/>

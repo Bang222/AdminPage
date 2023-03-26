@@ -70,7 +70,7 @@ const HomepageAdmin = () => {
                             :
                             <></>
                         }
-                        <Row className={"pt-5 mr-[30px] ml-[36px]"}>
+                        <Row className={"pt-5 mr-[24px] ml-[24px]"}>
                             <Col>
                                 <Row className={"md:flex md:justify-center"}>
                                     <TotalUserNav
