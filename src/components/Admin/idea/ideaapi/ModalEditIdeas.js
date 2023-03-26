@@ -151,8 +151,6 @@ const ModalEditIdeas = (props) => {
                                         {documents.length >= 0 ?
                                             <Row>
                                                 {/*<img className={"h-[300px] w-[300px]"} src={previewFile} alt={"okee"} />*/}
-
-
                                                         <p className={"p-2 flex "}><strong>File Uploaded: </strong>
                                                             {documents?.map((item) => {
                                                                 return (
@@ -168,7 +166,8 @@ const ModalEditIdeas = (props) => {
                                                         <p className={"p-2"}><strong>File Type</strong>: {file.type}</p>
                                                         <p className={"p-2"}><strong>File Size </strong>: {file.size} byte</p>
                                                     </>
-                                                    :<></>}
+                                                    :<span
+                                                        className={"text-lg h-[150px] flex justify-center items-center font-bold"}> Preview File</span>}
                                             </Row>
                                             :
                                             <span
