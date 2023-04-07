@@ -19,7 +19,7 @@ const ManagerUsers = () => {
     const dispatch = useDispatch()
     let axiosJWT = createAxios(user, dispatch, loginSuccess)
     const checkRole = jwt_decode(user.accessToken)
-    const role = checkRole.roles.includes("Quality Assurance Manager")
+    const role = checkRole.roles.includes("Adminstrator")
 
     const fetchUser = async () => await getAllUsers(user?.accessToken, dispatch, axiosJWT)
     const fetchBanUser = (userId) => deleteUser(axiosJWT, dispatch, user?.accessToken, userId)

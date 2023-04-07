@@ -25,6 +25,7 @@ export const ModelEditUser = (props) => {
         toast.success("update success")
         handleClose( await fetchUser())
     }
+    // console.log("check",departmentId)
     return (
         <Modal
             show={show}

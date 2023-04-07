@@ -26,7 +26,7 @@ const ManagerIdeas = (props) => {
         data: getAllIdea.idieas
     }
     const sumIdeas = getAllIdea.idieas?.map((item) => item.comments.length).reduce((partialSum, a) => partialSum + a, 0)
-    // console.log("check data",csvLinkIdeas)
+    console.log("check data",getAllIdea)
     return (
         <>
             <title>MANAGER IDEAS</title>

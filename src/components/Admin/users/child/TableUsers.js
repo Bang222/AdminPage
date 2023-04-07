@@ -4,7 +4,7 @@ import "./custom-style.css"
 const TableUsers = (props) => {
     const {fetchUser, getAllUsers, fetchBanUser} = props
 
-    //console.log(getAllUsers)
+    // console.log("check user",getAllUsers)
     return (
         <div className="table-wrapper-scroll-y my-custom-scrollbar" style={{display: "flex"}}>
             <table className={"table table-bordered table-striped mb-0"} id="customers">

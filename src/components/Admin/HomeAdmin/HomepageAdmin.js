@@ -8,7 +8,8 @@ import {loginSuccess} from "../../../redux/authSlice";
 import jwt_decode from "jwt-decode";
 import TotalUserNav from "./TotalUserNav";
 import ManagerChart from "./ManagerChart";
-import axios from "axios";
+import JSZip from "jszip";
+import Data from "./Data";
 
 const HomepageAdmin = () => {
     const auth = useSelector((state) => state.auth.login?.currentUser)
@@ -16,6 +17,9 @@ const HomepageAdmin = () => {
     const getAllIdea = useSelector((state) => state.listIdeas.ideas?.allIdeas)
     const listDepartments = useSelector((state) => state.departments.listDepartments?.allDepartments)
     const listAllCategories = useSelector((state) => state.departments.categories?.allCategories)
+
+    const [totalUsersOfDepartment, setTotalUsersOfDepartment] = useState("")
+    const [totalIdeasOfDepartment, setTotalIdeasOfDepartment] = useState("")
     const [animationChart, setAnimationChart] = useState(true)
     const dispatch = useDispatch()
     let axiosJWT = createAxios(auth, dispatch, loginSuccess)
@@ -40,7 +44,6 @@ const HomepageAdmin = () => {
     const handleClickDetailDepartment = () => {
         setCheckDepartment(!checkDepartment)
     }
-    console.log("get all",getAllIdea)
     return !role ? <Navigate to="/home"/> : (
         <>
             <title>Admin</title>
@@ -49,7 +52,9 @@ const HomepageAdmin = () => {
                     <Container>
                         <Row className={"pt-[24px] m-[1px] pb-[30px]"}>
                             <Row className={"flex text-center font-bold"}>
-                                <Col className={"text-4xl "}><h2> Dash Board Management</h2></Col>
+                               <Data
+                                   getAllUser={getAllUser}
+                               />
                             </Row>
                         </Row>
                         <Row className={"flex justify-center"}>
@@ -80,6 +85,10 @@ const HomepageAdmin = () => {
                                         checkDepartment={checkDepartment}
                                         listAllCategories={listAllCategories}
                                         handleClickDetailDepartment={handleClickDetailDepartment}
+                                        setTotalIdeasOfDepartment={setTotalIdeasOfDepartment}
+                                        setTotalUsersOfDepartment={setTotalUsersOfDepartment}
+                                        totalIdeasOfDepartment={totalIdeasOfDepartment}
+                                        totalUsersOfDepartment={totalUsersOfDepartment}
                                     />
                                 </Row>
                             </Col>
@@ -108,6 +117,9 @@ const HomepageAdmin = () => {
                         <Row className={"relative h-[300px] w-full overflow-hidden"}>
                             <ManagerChart
                                 getAllUser={getAllUser}
+                                listDepartments={listDepartments}
+                                totalIdeasOfDepartment={totalIdeasOfDepartment}
+                                totalUsersOfDepartment={totalUsersOfDepartment}
                                 animationChart={animationChart}
                                 setAnimationChart={setAnimationChart}
                             />

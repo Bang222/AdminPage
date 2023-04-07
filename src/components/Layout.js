@@ -1,9 +1,7 @@
 import React, {useState} from "react";
 import {HiMenuAlt3} from "react-icons/hi";
 import {MdOutlineDashboard} from "react-icons/md";
-import {TbReportAnalytics} from "react-icons/tb";
-import {AiOutlineUser, AiOutlineHeart, AiFillHome} from "react-icons/ai";
-import {FiFolder, FiShoppingCart} from "react-icons/fi";
+import {AiOutlineUser, AiFillHome} from "react-icons/ai";
 import {Link,NavLink,useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {logOut} from "../redux/Apirequest"
@@ -23,11 +21,11 @@ const Layout = (props) => {
         {name: "Home", link: "/home", icon: AiFillHome},
         {name: "categories", link: "categories", icon: MdOutlineDashboard},
         {name: "Manager Ideas", link: "manager-ideas", icon: MdOutlineDashboard},
-        {name: "Manager Users", link: "manager-users", icon: AiOutlineUser},
+        // {name: "Manager Users", link: "manager-users", icon: AiOutlineUser},
     ];
     const menus = [
-        {name: "Home", link: "/admin", icon: AiFillHome},
-        {name: "Manager Ideas", link: "manager-ideas", icon: MdOutlineDashboard},
+        {name: "Admin", link: "/admin", icon: AiFillHome},
+        {name: "Set Time", link: "manager-ideas", icon: MdOutlineDashboard},
         {name: "Manager Users", link: "manager-users", icon: AiOutlineUser},
     ];
     const [open, setOpen] = useState(true);

@@ -154,7 +154,7 @@ const ModalEditIdeas = (props) => {
                                                         <p className={"p-2 flex "}><strong>File Uploaded: </strong>
                                                             {documents?.map((item) => {
                                                                 return (
-                                                                    <a href={item.url}>{item.key.split(',,')[1]},</a>
+                                                                    <a key={item.key} href={item.url}>{item.key.split(',,')[1]},</a>
                                                                 )
                                                             })
                                                             }

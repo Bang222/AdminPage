@@ -48,15 +48,14 @@ const RoutesApp = () => {
                     <Route path="home" element={<Index><Authorization><IndexManager/></Authorization></Index>}>
                         <Route index element={<HomepageAdmin/>}/>
                         <Route path="categories" element={<ManagerCategories/>}/>
-                        <Route path="manager-users" element={<ManagerUsers/>}/>
+                        {/*<Route path="manager-users" element={<ManagerUsers/>}/>*/}
                         <Route path="manager-ideas" element={<Ideas/>}/>
                     </Route>
                     <Route path="admin" element={<Index><Authorization><IndexAdmin/></Authorization></Index>}>
-                        {/*<Route index element={<HomepageAdmin/>}/>*/}
-                        {/*<Route path="manager-users" element={<ManagerUsers/>}/>*/}
+                        {/*<Route index element={<ManagerUsers/>}/>*/}
+                        <Route path="manager-users" element={<ManagerUsers/>}/>
                         {/*<Route path="manager-ideas" element={<Ideas/>}/>*/}
                     </Route>
-
                 </Routes>
             </ProSidebarProvider>
         </Router>

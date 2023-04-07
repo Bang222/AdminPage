@@ -4,7 +4,9 @@ import './styleChart.css'
 import ModalDepartment from "./ModalDepartment";
 
 const TotalUserNav = (props) => {
-    const {getAllUser, listDepartments,listAllCategories, checkDepartment, handleClickDetailDepartment} = props
+    const {getAllUser, listDepartments,listAllCategories, checkDepartment, handleClickDetailDepartment,
+        setTotalIdeasOfDepartment,setTotalUsersOfDepartment,totalIdeasOfDepartment,totalUsersOfDepartment
+    } = props
     const sumIdeas = getAllUser.map((item) => item.Idiea.length).reduce((partialSum, a) => partialSum + a, 0)
     const [showDepartment, setShowDepartment] = useState(false);
     const [idDepartment, setIdDepartment] = useState("")
@@ -43,6 +45,11 @@ const TotalUserNav = (props) => {
                                                 setShowDepartment={setShowDepartment}
                                                 idDepartment={idDepartment}
                                                 nameDepartment={nameDepartment}
+                                                getAllUser={getAllUser}
+                                                setTotalIdeasOfDepartment={setTotalIdeasOfDepartment}
+                                                setTotalUsersOfDepartment={setTotalUsersOfDepartment}
+                                                totalIdeasOfDepartment={totalIdeasOfDepartment}
+                                                totalUsersOfDepartment={totalUsersOfDepartment}
                                             />
                                         </Col>
                                     </Row>
